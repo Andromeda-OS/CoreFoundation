@@ -196,6 +196,9 @@ CF_EXPORT const CFCalendarIdentifier kCFIndianCalendar CF_AVAILABLE(10_6, 4_0);
 CF_EXPORT const CFCalendarIdentifier kCFISO8601Calendar CF_AVAILABLE(10_6, 4_0);
 CF_EXPORT const CFCalendarIdentifier kCFIslamicTabularCalendar CF_AVAILABLE(10_10, 8_0);
 CF_EXPORT const CFCalendarIdentifier kCFIslamicUmmAlQuraCalendar CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierCoptic CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteMihret CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteAlem CF_AVAILABLE(10_10, 8_0);
 
 CF_EXTERN_C_END
 CF_IMPLICIT_BRIDGING_DISABLED

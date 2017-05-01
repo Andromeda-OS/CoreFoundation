@@ -107,7 +107,6 @@
 		3920B1A51E3DB51000BDE669 /* CFArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0A41E3DB05700BDE669 /* CFArray.c */; };
 		3920B1A61E3DB51900BDE669 /* CFBag.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0A61E3DB05700BDE669 /* CFBag.c */; };
 		3920B1A71E3DB51B00BDE669 /* CFBasicHash.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0A81E3DB05700BDE669 /* CFBasicHash.c */; };
-		3920B1A81E3DB51D00BDE669 /* CFBasicHashFindBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0AA1E3DB05700BDE669 /* CFBasicHashFindBucket.m */; };
 		3920B1A91E3DB51F00BDE669 /* CFBinaryHeap.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0AB1E3DB05700BDE669 /* CFBinaryHeap.c */; };
 		3920B1AA1E3DB52200BDE669 /* CFBitVector.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0AD1E3DB05700BDE669 /* CFBitVector.c */; };
 		3920B1AB1E3DB52400BDE669 /* CFData.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0AF1E3DB05700BDE669 /* CFData.c */; };
@@ -929,7 +928,6 @@
 				3920B1DC1E3DB5C200BDE669 /* CFRunArray.c in Sources */,
 				3920B19F1E3DB4C100BDE669 /* CFRuntime.c in Sources */,
 				3920B1D01E3DB59C00BDE669 /* CFMachPort.c in Sources */,
-				3920B1A81E3DB51D00BDE669 /* CFBasicHashFindBucket.m in Sources */,
 				3920B1BC1E3DB56400BDE669 /* CFPropertyList.c in Sources */,
 				3920B1C41E3DB57800BDE669 /* CFBundle_Grok.c in Sources */,
 				3920B1C51E3DB57C00BDE669 /* CFBundle_InfoPlist.c in Sources */,
@@ -977,99 +975,85 @@
 		3920B0121E3DAABF00BDE669 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1348.28;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = CoreFoundation/Base.subproj/CoreFoundation_Prefix.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					CF_BUILDING_CF,
+					DEPLOYMENT_TARGET_MACOSX,
+					DEPLOYMENT_ENABLE_LIBDISPATCH,
+					INCLUDE_OBJC,
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				OTHER_CFLAGS = (
+					"-DCF_BUILDING_CF",
+					"-DDEPLOYMENT_TARGET_MACOSX",
+					"-g3",
+					"-fconstant-cfstrings",
+					"-fexceptions",
+					"-Wno-shorten-64-to-32",
+					"-Wno-deprecated-declarations",
+					"-Wno-unreachable-code",
+					"-Wno-conditional-uninitialized",
+					"-Wno-unused-variable",
+					"-Wno-int-conversion",
+					"-Wno-unused-function",
+					"-DHAVE_STRUCT_TIMESPEC",
+					"-DCF_CHARACTERSET_UNICODE_DATA_L=\\\"CoreFoundation/CharacterSets/CFUnicodeData-L.mapping\\\"",
+					"-DCF_CHARACTERSET_UNICODE_DATA_B=\\\"CoreFoundation/CharacterSets/CFUnicodeData-B.mapping\\\"",
+					"-DCF_CHARACTERSET_UNICHAR_DB=\\\"CoreFoundation/CharacterSets/CFUniCharPropertyDatabase.data\\\"",
+					"-DCF_CHARACTERSET_BITMAP=\\\"CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap\\\"",
+				);
+				SDKROOT = macosx.internal;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
 		3920B0131E3DAABF00BDE669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1348.28;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				GCC_PREFIX_HEADER = CoreFoundation/Base.subproj/CoreFoundation_Prefix.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					CF_BUILDING_CF,
+					"DEPLOYMENT_TARGET_MACOSX=1",
+					"DEPLOYMENT_ENABLE_LIBDISPATCH=1",
+					INCLUDE_OBJC,
+					__HAS_DISPATCH__,
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				OTHER_CFLAGS = (
+					"-DCF_BUILDING_CF",
+					"-DDEPLOYMENT_TARGET_MACOSX",
+					"-g3",
+					"-fconstant-cfstrings",
+					"-fexceptions",
+					"-Wno-shorten-64-to-32",
+					"-Wno-deprecated-declarations",
+					"-Wno-unreachable-code",
+					"-Wno-conditional-uninitialized",
+					"-Wno-unused-variable",
+					"-Wno-int-conversion",
+					"-Wno-unused-function",
+					"-DHAVE_STRUCT_TIMESPEC",
+					"-DCF_CHARACTERSET_UNICODE_DATA_L=\\\"CoreFoundation/CharacterSets/CFUnicodeData-L.mapping\\\"",
+					"-DCF_CHARACTERSET_UNICODE_DATA_B=\\\"CoreFoundation/CharacterSets/CFUnicodeData-B.mapping\\\"",
+					"-DCF_CHARACTERSET_UNICHAR_DB=\\\"CoreFoundation/CharacterSets/CFUniCharPropertyDatabase.data\\\"",
+					"-DCF_CHARACTERSET_BITMAP=\\\"CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap\\\"",
+				);
+				SDKROOT = macosx.internal;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 		3920B0151E3DAABF00BDE669 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1082,7 +1066,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.PureDarwin.CoreFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.12;
 				SEPARATE_STRIP = YES;
 				SKIP_INSTALL = YES;
 			};
@@ -1091,6 +1074,8 @@
 		3920B0161E3DAABF00BDE669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1104,7 +1089,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.PureDarwin.CoreFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.12;
 				SEPARATE_STRIP = YES;
 				SKIP_INSTALL = YES;
 			};

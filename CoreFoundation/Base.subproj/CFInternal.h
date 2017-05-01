@@ -12,7 +12,7 @@
 */
 
 #if !CF_BUILDING_CF
-//#error The header file CFInternal.h is for the exclusive use of CoreFoundation. No other project should include it.
+#error The header file CFInternal.h is for the exclusive use of CoreFoundation. No other project should include it.
 #endif
 
 #if !defined(__COREFOUNDATION_CFINTERNAL__)
@@ -82,9 +82,10 @@
 #define _CF_RELEASES_ARGUMENT_OBJ
 #endif
 
+#include <CoreFoundation/CFBase.h>
+
 CF_EXTERN_C_BEGIN
 
-#include <CoreFoundation/CFBase.h>
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFString.h>
 #include <CoreFoundation/CFDate.h>
@@ -419,8 +420,8 @@ CF_PRIVATE void _CFRaiseMemoryException(CFStringRef reason);
 
 CF_EXPORT CF_PRIVATE Boolean __CFProphylacticAutofsAccess;
 
-CF_EXPORT id __NSDictionary0__;
-CF_EXPORT id __NSArray0__;
+//CF_EXPORT id __NSDictionary0__;
+//CF_EXPORT id __NSArray0__;
 
 
 #if DEPLOYMENT_TARGET_MACOSX
@@ -893,6 +894,8 @@ CF_PRIVATE CFStringRef _CFStringCopyBundleUnloadingProtectedString(CFStringRef s
     prototype { asm(""); }
 
 CF_EXTERN_C_END
+
+//}
 
 #endif /* ! __COREFOUNDATION_CFINTERNAL__ */
 

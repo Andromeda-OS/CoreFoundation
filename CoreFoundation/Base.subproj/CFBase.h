@@ -10,8 +10,8 @@
 #if !defined(__COREFOUNDATION_CFBASE__)
 #define __COREFOUNDATION_CFBASE__ 0
 
-//#if DEPLOYMENT_RUNTIME_SWIFT
-//#include <CoreFoundation/TargetConditionals.h>
+#if DEPLOYMENT_RUNTIME_SWIFT
+#include <CoreFoundation/TargetConditionals.h>
 #else
 #include <TargetConditionals.h>
 #endif
