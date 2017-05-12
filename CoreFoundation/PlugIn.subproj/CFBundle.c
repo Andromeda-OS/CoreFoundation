@@ -144,21 +144,25 @@ static void _CFBundleEnsureBundlesExistForImagePaths(CFArrayRef imagePaths);
 
 
 CF_PRIVATE os_log_t _CFBundleResourceLogger(void) {
-    static os_log_t _log;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _log = os_log_create("com.apple.CFBundle", "resources");
-    });
-    return _log;
+    #ifndef _PUREDARWIN
+        static os_log_t _log;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _log = os_log_create("com.apple.CFBundle", "resources");
+        });
+        return _log;
+    #endif /* _PUREDARWIN */
 }
 
 CF_PRIVATE os_log_t _CFBundleLocalizedStringLogger(void) {
-    static os_log_t _log;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _log = os_log_create("com.apple.CFBundle", "strings");
-    });
-    return _log;
+    #ifndef _PUREDARWIN
+        static os_log_t _log;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _log = os_log_create("com.apple.CFBundle", "strings");
+        });
+        return _log;
+    #endif /* _PUREDARWIN */
 }
 
 #pragma mark -

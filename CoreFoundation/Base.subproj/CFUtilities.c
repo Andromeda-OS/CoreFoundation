@@ -72,7 +72,9 @@ CF_PRIVATE os_log_t _CFOSLog(void) {
     static os_log_t logger;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        logger = os_log_create("com.apple.foundation", "general");
+        #ifndef _PUREDARWIN
+            logger = os_log_create("com.apple.foundation", "general");
+        #endif /* _PUREDARWIN */
     });
     return logger;
 }

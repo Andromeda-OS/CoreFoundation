@@ -94,10 +94,14 @@ CF_BREAKPOINT_FUNCTION(void _CFMachPortDeallocationFailure(void));
 void _cfmp_log_failure(const char *const msg, _cfmp_deallocation_record *pr) {
     if (pr) {
         const _cfmp_deallocation_record R = *pr;
-        os_log(OS_LOG_DEFAULT, "*** %{public}s break on '_CFMachPortDeallocationFailure' to debug: {p:%{private}d,s:%d,r:%d,i:%d}", msg, R.port, R.doSend, R.doReceive, R.invalidated);
+        #ifndef _PUREDARWIN
+            os_log(OS_LOG_DEFAULT, "*** %{public}s break on '_CFMachPortDeallocationFailure' to debug: {p:%{private}d,s:%d,r:%d,i:%d}", msg, R.port, R.doSend, R.doReceive, R.invalidated);
+        #endif /* _PUREDARWIN */
     }
     else {
-        os_log(OS_LOG_DEFAULT, "*** %{public}s break on  '_CFMachPortDeallocationFailure' to debug: {null}", msg);
+        #ifndef _PUREDARWIN
+            os_log(OS_LOG_DEFAULT, "*** %{public}s break on  '_CFMachPortDeallocationFailure' to debug: {null}", msg);
+        #endif /* _PUREDARWIN */
     }
     _CFMachPortDeallocationFailure();
 }

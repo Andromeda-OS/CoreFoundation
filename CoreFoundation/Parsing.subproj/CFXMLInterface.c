@@ -11,6 +11,8 @@
 	Copyright (c) 2015 Apple Inc. and the Swift project authors
  */
 
+#ifdef DEPLOYMENT_RUNTIME_SWIFT
+
 #include <CoreFoundation/CFRuntime.h>
 #include <libxml/globals.h>
 #include <libxml/xmlerror.h>
@@ -1246,3 +1248,5 @@ void _CFXMLFreeDTD(_CFXMLDTDPtr dtd) {
 void _CFXMLFreeProperty(_CFXMLNodePtr prop) {
     xmlFreeProp(prop);
 }
+
+#endif /* DEPLOYMENT_RUNTIME_SWIFT */

@@ -497,9 +497,11 @@ static CFURLRef _CFPreferencesURLForStandardDomain(CFStringRef domainName, CFStr
     return _CFPreferencesURLForStandardDomainWithSafetyLevel(domainName, userName, hostName, __CFSafeLaunchLevel);
 }
 
-const _CFPreferencesDomainCallBacks __kCFXMLPropertyListDomainCallBacks = {
+#ifndef _PUREDARWIN
+    const _CFPreferencesDomainCallBacks __kCFXMLPropertyListDomainCallBacks = {
     
-};
+    };
+#endif /* _PUREDARWIN */
 
 CFPreferencesDomainRef _CFPreferencesStandardDomain(CFStringRef  domainName, CFStringRef  userName, CFStringRef  hostName) {
     CFPreferencesDomainRef domain;

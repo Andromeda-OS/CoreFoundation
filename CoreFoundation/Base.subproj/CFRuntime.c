@@ -711,7 +711,7 @@ CFIndex CFGetRetainCount(CFTypeRef cf) {
     uint64_t rc = __CFGetFullRetainCount(cf);
     return (rc < (uint64_t)LONG_MAX) ? (CFIndex)rc : (CFIndex)LONG_MAX;
 }
-#endif
+#endif // DEPLOYMENT_RUNTIME_SWIFT
 
 // Even though we no longer support GC, leave implementations of these functions in for compatibility.
 CFTypeRef CFMakeCollectable(CFTypeRef cf) {

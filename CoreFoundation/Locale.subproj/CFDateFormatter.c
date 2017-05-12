@@ -46,6 +46,8 @@ CF_EXPORT const CFStringRef kCFDateFormatterCalendarIdentifierKey;
 
 #define BUFFER_SIZE 768
 
+CONST_STRING_DECL(kCFDateFormatterTimeZone, "timezone");
+
 static CFStringRef __CFDateFormatterCreateForcedTemplate(CFLocaleRef locale, CFStringRef inString, Boolean stripAMPM);
 
 // If you pass in a string in tmplate, you get back NULL (failure) or a CFStringRef.

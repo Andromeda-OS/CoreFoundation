@@ -129,6 +129,41 @@ CONST_STRING_DECL(kCFCalendarIdentifierCoptic, "coptic");
 CONST_STRING_DECL(kCFCalendarIdentifierEthiopicAmeteMihret, "ethiopic");
 CONST_STRING_DECL(kCFCalendarIdentifierEthiopicAmeteAlem, "ethiopic-amete-alem");
 
+CONST_STRING_DECL(kCFLocaleCalendarIdentifier, "locale");
+
+CONST_STRING_DECL(kCFGregorianCalendar, "gregorian");
+CONST_STRING_DECL(kCFBuddhistCalendar, "buddhist");
+CONST_STRING_DECL(kCFJapaneseCalendar, "japanese");
+CONST_STRING_DECL(kCFIslamicCalendar, "islamic");
+CONST_STRING_DECL(kCFIslamicCivilCalendar, "islamic-civil");
+CONST_STRING_DECL(kCFIslamicUmmAlQuraCalendar, "islamic-umalqura");
+CONST_STRING_DECL(kCFIslamicTabularCalendar, "islamic-tbla");
+CONST_STRING_DECL(kCFHebrewCalendar, "hebrew");
+CONST_STRING_DECL(kCFChineseCalendar, "chinese");
+CONST_STRING_DECL(kCFRepublicOfChinaCalendar, "roc");
+CONST_STRING_DECL(kCFPersianCalendar, "persian");
+CONST_STRING_DECL(kCFIndianCalendar, "indian");
+CONST_STRING_DECL(kCFISO8601Calendar, "iso8601");
+CONST_STRING_DECL(kCFCopticCalendar, "coptic");
+CONST_STRING_DECL(kCFEthiopicAmeteMihretCalendar, "ethiopic");
+CONST_STRING_DECL(kCFEthiopicAmeteAlemCalendar, "ethiopic-amete-alem");
+
+/* CF_EXPORT const CFCalendarIdentifier kCFBuddhistCalendar;
+CF_EXPORT const CFCalendarIdentifier kCFChineseCalendar;
+CF_EXPORT const CFCalendarIdentifier kCFHebrewCalendar;
+CF_EXPORT const CFCalendarIdentifier kCFIslamicCalendar;
+CF_EXPORT const CFCalendarIdentifier kCFIslamicCivilCalendar;
+CF_EXPORT const CFCalendarIdentifier kCFJapaneseCalendar;
+CF_EXPORT const CFCalendarIdentifier kCFRepublicOfChinaCalendar CF_AVAILABLE(10_6, 4_0);
+CF_EXPORT const CFCalendarIdentifier kCFPersianCalendar CF_AVAILABLE(10_6, 4_0);
+CF_EXPORT const CFCalendarIdentifier kCFIndianCalendar CF_AVAILABLE(10_6, 4_0);
+CF_EXPORT const CFCalendarIdentifier kCFISO8601Calendar CF_AVAILABLE(10_6, 4_0);
+CF_EXPORT const CFCalendarIdentifier kCFIslamicTabularCalendar CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFIslamicUmmAlQuraCalendar CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierCoptic CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteMihret CF_AVAILABLE(10_10, 8_0);
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteAlem CF_AVAILABLE(10_10, 8_0); */
+
 // Aliases for Linux
 #if DEPLOYMENT_TARGET_LINUX
 
