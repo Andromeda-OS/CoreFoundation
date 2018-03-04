@@ -21,6 +21,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+double kCFCoreFoundationVersionNumber = kCFCoreFoundationVersionNumber10_11_Max;
+
 // -------- -------- -------- -------- -------- -------- -------- --------
 
 struct __CFAllocator {

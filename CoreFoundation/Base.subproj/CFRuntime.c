@@ -956,7 +956,7 @@ pthread_t _CF_pthread_main_thread_np(void) {
 #endif
 
 
-#if DEPLOYMENT_TARGET_LINUX || DEPLOYMENT_TARGET_FREEBSD
+#if DEPLOYMENT_TARGET_LINUX || DEPLOYMENT_TARGET_FREEBSD || DEPLOYMENT_TARGET_MACOSX
 static void __CFInitialize(void) __attribute__ ((constructor));
 static
 #endif
@@ -966,7 +966,7 @@ CF_EXPORT
 void __CFInitialize(void) {
     if (!__CFInitialized && !__CFInitializing) {
         __CFInitializing = 1;
-
+        
 #if DEPLOYMENT_TARGET_WINDOWS || DEPLOYMENT_TARGET_IPHONESIMULATOR
         if (!pthread_main_np()) HALT;   // CoreFoundation must be initialized on the main thread
 #endif
