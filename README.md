@@ -1,11 +1,14 @@
 # CF-1348.28
 Built from CoreFoundation found in https://github.com/apple/swift-corelibs-foundation/tree/master/CoreFoundation
 
-Modified to work (more or less) when installed in a PureDarwin images (eg. the 10.10.5 PoC).
+Modified to work (more or less) when installed in a PureDarwin image (eg. the 10.10.5 PoC).
+
+(If you just want binary roots to add to a PureDarwin image, look [here](https://github.com/sjc/roots-for-puredarwin))
 
 * Version set to 1348.28.0
 * Removed CFURLSession and dependency on libcurl (and everything that depends on)
 * Calls CFInitialize() at load time, so things actually work
+* Adds an implementation of CFFileDescriptor
 
 Dependencies:
 

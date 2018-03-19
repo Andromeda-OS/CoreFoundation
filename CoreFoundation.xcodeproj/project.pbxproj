@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1770B6C9205EBF2000AE51C9 /* CFFileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */; };
+		1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */; };
 		3920B1441E3DB06700BDE669 /* CFNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3920B1451E3DB06C00BDE669 /* CFUserNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0831E3DB05700BDE669 /* CFUserNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3920B1461E3DB09D00BDE669 /* CFAsmMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0851E3DB05700BDE669 /* CFAsmMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -181,6 +183,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFileDescriptor.h; sourceTree = "<group>"; };
+		1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFFileDescriptor.c; sourceTree = "<group>"; };
 		3920B00C1E3DAABF00BDE669 /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3920B0101E3DAABF00BDE669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFNotificationCenter.h; sourceTree = "<group>"; };
@@ -639,6 +643,8 @@
 				3920B10A1E3DB05800BDE669 /* CFStreamAbstract.h */,
 				3920B10B1E3DB05800BDE669 /* CFStreamInternal.h */,
 				3920B10C1E3DB05800BDE669 /* CFStreamPriv.h */,
+				1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */,
+				1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */,
 			);
 			name = Stream.subproj;
 			path = CoreFoundation/Stream.subproj;
@@ -783,6 +789,7 @@
 				3920B1581E3DB0E200BDE669 /* CFData.h in Headers */,
 				3920B1591E3DB0E200BDE669 /* CFDictionary.h in Headers */,
 				3920B15A1E3DB0E200BDE669 /* CFSet.h in Headers */,
+				1770B6C9205EBF2000AE51C9 /* CFFileDescriptor.h in Headers */,
 				3920B15C1E3DB0E200BDE669 /* CFTree.h in Headers */,
 				3920B1481E3DB09D00BDE669 /* CFBase.h in Headers */,
 				3920B1491E3DB09D00BDE669 /* CFByteOrder.h in Headers */,
@@ -970,6 +977,7 @@
 				3920B1AA1E3DB52200BDE669 /* CFBitVector.c in Sources */,
 				3920B1B51E3DB54900BDE669 /* CFNumberFormatter.c in Sources */,
 				3920B1AC1E3DB52600BDE669 /* CFDictionary.c in Sources */,
+				1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */,
 				3920B1AB1E3DB52400BDE669 /* CFData.c in Sources */,
 				3920B1A21E3DB4F200BDE669 /* CFUtilities.c in Sources */,
 				3920B1AD1E3DB52800BDE669 /* CFSet.c in Sources */,

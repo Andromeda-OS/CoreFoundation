@@ -820,6 +820,9 @@ extern void __CFNumberInitialize(void);
 extern void __CFCharacterSetInitialize(void);
 extern void __CFPFactoryInitialize(void);
 extern void __CFPlugInInitialize(void);
+
+extern void __CFFileDescriptorInitialize(void);
+
 #if (DEPLOYMENT_TARGET_LINUX || DEPLOYMENT_TARGET_MACOSX) && DEPLOYMENT_RUNTIME_SWIFT
 CF_PRIVATE void __CFTSDInitialize();
 #endif
@@ -1104,6 +1107,8 @@ void __CFInitialize(void) {
         CFCalendarGetTypeID();
 #endif
 #endif
+        
+        __CFFileDescriptorInitialize();
         
 #if DEPLOYMENT_RUNTIME_SWIFT
 #ifndef __CFInitializeSwift
