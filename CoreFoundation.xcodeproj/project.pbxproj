@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1770B6C9205EBF2000AE51C9 /* CFFileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */; };
 		1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */; };
+		1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B7252064486D00AE51C9 /* CFNotificationCenter.c */; };
 		3920B1441E3DB06700BDE669 /* CFNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3920B1451E3DB06C00BDE669 /* CFUserNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0831E3DB05700BDE669 /* CFUserNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3920B1461E3DB09D00BDE669 /* CFAsmMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0851E3DB05700BDE669 /* CFAsmMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -185,6 +186,7 @@
 /* Begin PBXFileReference section */
 		1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFileDescriptor.h; sourceTree = "<group>"; };
 		1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFFileDescriptor.c; sourceTree = "<group>"; };
+		1770B7252064486D00AE51C9 /* CFNotificationCenter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFNotificationCenter.c; sourceTree = "<group>"; };
 		3920B00C1E3DAABF00BDE669 /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3920B0101E3DAABF00BDE669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFNotificationCenter.h; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */,
+				1770B7252064486D00AE51C9 /* CFNotificationCenter.c */,
 				3920B0821E3DB05700BDE669 /* CFUserNotification.c */,
 				3920B0831E3DB05700BDE669 /* CFUserNotification.h */,
 			);
@@ -958,6 +961,7 @@
 				3920B1B31E3DB54400BDE669 /* CFLocale.c in Sources */,
 				3920B1C81E3DB58300BDE669 /* CFBundle_Strings.c in Sources */,
 				3920B1CC1E3DB58C00BDE669 /* CFPlugIn_PlugIn.c in Sources */,
+				1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */,
 				3920B1CA1E3DB58600BDE669 /* CFPlugIn_Factory.c in Sources */,
 				3920B1CB1E3DB58900BDE669 /* CFPlugIn_Instance.c in Sources */,
 				3920B1BE1E3DB56700BDE669 /* CFXMLInterface.c in Sources */,

@@ -22,14 +22,13 @@
 #include <os/lock.h>
 #include <os/log.h>
 
-
 // This queue is used for the cancel/event handler for dead name notification.
 static dispatch_queue_t _CFMachPortQueue() {
     static volatile dispatch_queue_t __CFMachPortQueue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dispatch_queue_attr_t dqattr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_BACKGROUND, 0);
-        __CFMachPortQueue = dispatch_queue_create("com.apple.CFMachPort", dispatch_queue_attr_make_with_overcommit(dqattr, true));
+        __CFMachPortQueue = dispatch_queue_create("com.apple.CFMachPort", dqattr); // TODO: this appears to OR 0x20 (or something) with the options. check we are passing the correct options. dispatch_queue_attr_make_with_overcommit(dqattr, true));
     });
     return __CFMachPortQueue;
 }
@@ -488,7 +487,7 @@ CFMachPortRef _CFMachPortCreateWithPort2(CFAllocatorRef allocator, mach_port_t p
         if (type & MACH_PORT_TYPE_SEND_RIGHTS) {
             _cfmp_record_intent_to_invalidate(port);
             dispatch_source_t theSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_MACH_SEND, port, DISPATCH_MACH_SEND_DEAD, _CFMachPortQueue());
-	    if (theSource) {
+            if (theSource) {
                 dispatch_source_set_cancel_handler(theSource, ^{
                     _cfmp_source_invalidated(port);
                     dispatch_release(theSource);
@@ -496,7 +495,7 @@ CFMachPortRef _CFMachPortCreateWithPort2(CFAllocatorRef allocator, mach_port_t p
                 dispatch_source_set_event_handler(theSource, ^{ __CFMachPortChecker(false); });
                 memory->_dsrc = theSource;
                 dispatch_resume(theSource);
-	    }
+            }
         }
     }
     

@@ -822,6 +822,7 @@ extern void __CFPFactoryInitialize(void);
 extern void __CFPlugInInitialize(void);
 
 extern void __CFFileDescriptorInitialize(void);
+extern void __CFNotificationCenterInitialize(void);
 
 #if (DEPLOYMENT_TARGET_LINUX || DEPLOYMENT_TARGET_MACOSX) && DEPLOYMENT_RUNTIME_SWIFT
 CF_PRIVATE void __CFTSDInitialize();
@@ -1109,6 +1110,7 @@ void __CFInitialize(void) {
 #endif
         
         __CFFileDescriptorInitialize();
+        __CFNotificationCenterInitialize();
         
 #if DEPLOYMENT_RUNTIME_SWIFT
 #ifndef __CFInitializeSwift

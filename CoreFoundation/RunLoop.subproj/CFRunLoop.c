@@ -831,13 +831,13 @@ CF_INLINE void __CFRunLoopSetDeallocating(CFRunLoopRef rl) {
 }
 
 CF_INLINE void __CFRunLoopLock(CFRunLoopRef rl) {
-    pthread_mutex_lock(&(((CFRunLoopRef)rl)->_lock));
+    pthread_mutex_lock(&rl->_lock);
     //    CFLog(6, CFSTR("__CFRunLoopLock locked %p"), rl);
 }
 
 CF_INLINE void __CFRunLoopUnlock(CFRunLoopRef rl) {
     //    CFLog(6, CFSTR("__CFRunLoopLock unlocking %p"), rl);
-    pthread_mutex_unlock(&(((CFRunLoopRef)rl)->_lock));
+    pthread_mutex_unlock(&rl->_lock);
 }
 
 static CFStringRef __CFRunLoopCopyDescription(CFTypeRef cf) {
@@ -1435,7 +1435,10 @@ CF_PRIVATE void __CFFinalizeRunLoop(uintptr_t data);
 
 CFTypeID CFRunLoopGetTypeID(void) {
     static dispatch_once_t initOnce;
-    dispatch_once(&initOnce, ^{ __kCFRunLoopTypeID = _CFRuntimeRegisterClass(&__CFRunLoopClass); __kCFRunLoopModeTypeID = _CFRuntimeRegisterClass(&__CFRunLoopModeClass); });
+    dispatch_once(&initOnce, ^{
+        __kCFRunLoopTypeID = _CFRuntimeRegisterClass(&__CFRunLoopClass);
+        __kCFRunLoopModeTypeID = _CFRuntimeRegisterClass(&__CFRunLoopModeClass);
+    });
     return __kCFRunLoopTypeID;
 }
 
@@ -3108,15 +3111,15 @@ Boolean CFRunLoopContainsSource(CFRunLoopRef rl, CFRunLoopSourceRef rls, CFStrin
     Boolean hasValue = false;
     __CFRunLoopLock(rl);
     if (modeName == kCFRunLoopCommonModes) {
-	if (NULL != rl->_commonModeItems) {
-	    hasValue = CFSetContainsValue(rl->_commonModeItems, rls);
-	}
+        if (NULL != rl->_commonModeItems) {
+            hasValue = CFSetContainsValue(rl->_commonModeItems, rls);
+        }
     } else {
-	rlm = __CFRunLoopFindMode(rl, modeName, false);
-	if (NULL != rlm) {
-	    hasValue = (rlm->_sources0 ? CFSetContainsValue(rlm->_sources0, rls) : false) || (rlm->_sources1 ? CFSetContainsValue(rlm->_sources1, rls) : false);
-	    __CFRunLoopModeUnlock(rlm);
-	}
+        rlm = __CFRunLoopFindMode(rl, modeName, false);
+        if (NULL != rlm) {
+            hasValue = (rlm->_sources0 ? CFSetContainsValue(rlm->_sources0, rls) : false) || (rlm->_sources1 ? CFSetContainsValue(rlm->_sources1, rls) : false);
+            __CFRunLoopModeUnlock(rlm);
+        }
     }
     __CFRunLoopUnlock(rl);
     return hasValue;
