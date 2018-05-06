@@ -220,14 +220,14 @@ static void __CFCalendarZapCal(CFCalendarRef calendar) {
 
 CFCalendarRef CFCalendarCopyCurrent(void) {
     CFLocaleRef locale = CFLocaleCopyCurrent();
+    CFCalendarRef calendar = NULL;
     CFCalendarRef calID = (CFCalendarRef)CFLocaleGetValue(locale, kCFLocaleCalendarIdentifier);
     if (calID) {
-        CFCalendarRef calendar = CFCalendarCreateWithIdentifier(kCFAllocatorSystemDefault, (CFStringRef)calID);
+        calendar = CFCalendarCreateWithIdentifier(kCFAllocatorSystemDefault, (CFStringRef)calID);
         CFCalendarSetLocale(calendar, locale);
-	CFRelease(locale);
-        return calendar;
     }
-    return NULL;
+    CFRelease(locale);
+    return calendar;
 }
 
 Boolean _CFCalendarInitWithIdentifier(CFCalendarRef calendar, CFStringRef identifier) {

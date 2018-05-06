@@ -807,6 +807,7 @@ CFTypeID CFNullGetTypeID(void) {
     static dispatch_once_t initOnce = 0;
     dispatch_once(&initOnce, ^{
         __kCFNullTypeID = _CFRuntimeRegisterClass(&__CFNullClass); // initOnce covered
+        _CFRuntimeBridgeTypeToClass(__kCFNullTypeID, objc_getClass("NSNull"));
         _CFRuntimeSetInstanceTypeIDAndIsa(&__kCFNull, __kCFNullTypeID);
     });
     return __kCFNullTypeID;

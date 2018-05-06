@@ -87,6 +87,9 @@ typedef struct __CFRuntimeClass {
 
 #define RADAR_5115468_FIXED 1
 
+// _sjc_ make this available elsewhere
+CF_EXPORT void _CFRuntimeBridgeTypeToClass(CFTypeID cf_typeID, const void *cls_ref);
+
 /* Note that CF runtime class registration and unregistration is not currently
  * thread-safe, which should not currently be a problem, as long as unregistration
  * is done only when valid to do so.

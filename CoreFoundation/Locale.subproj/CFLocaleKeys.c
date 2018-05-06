@@ -129,7 +129,7 @@ CONST_STRING_DECL(kCFCalendarIdentifierCoptic, "coptic");
 CONST_STRING_DECL(kCFCalendarIdentifierEthiopicAmeteMihret, "ethiopic");
 CONST_STRING_DECL(kCFCalendarIdentifierEthiopicAmeteAlem, "ethiopic-amete-alem");
 
-CONST_STRING_DECL(kCFLocaleCalendarIdentifier, "locale");
+CONST_STRING_DECL(kCFLocaleCalendarIdentifier, "calendar"); // _sjc_ this was "locale" !
 
 CONST_STRING_DECL(kCFGregorianCalendar, "gregorian");
 CONST_STRING_DECL(kCFBuddhistCalendar, "buddhist");

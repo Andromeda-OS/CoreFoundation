@@ -1080,7 +1080,7 @@ CF_PRIVATE int _NS_gettimeofday(struct timeval *tv, struct timezone *tz) {
 #pragma mark -
 #pragma mark Linux OSAtomic
 
-#if defined(DEPLOYMENT_TARGET_LINUX) || defined(DEPLOYMENT_TARGET_FREEBSD)
+#if defined(DEPLOYMENT_TARGET_LINUX) || defined(DEPLOYMENT_TARGET_FREEBSD) || defined(DEPLOYMENT_TARGET_MACOSX)
 
 bool OSAtomicCompareAndSwapPtr(void *oldp, void *newp, void *volatile *dst) 
 { 

@@ -74,6 +74,7 @@ CFTypeID CFBooleanGetTypeID(void) {
     static dispatch_once_t initOnce;
     dispatch_once(&initOnce, ^{
         __kCFBooleanTypeID = _CFRuntimeRegisterClass(&__CFBooleanClass); // initOnce covered
+        _CFRuntimeBridgeTypeToClass(__kCFBooleanTypeID, objc_getClass("__NSCFBoolean"));
         _CFRuntimeSetInstanceTypeIDAndIsa(&__kCFBooleanTrue, __kCFBooleanTypeID);
         _CFRuntimeSetInstanceTypeIDAndIsa(&__kCFBooleanFalse, __kCFBooleanTypeID);
     });

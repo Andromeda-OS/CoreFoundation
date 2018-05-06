@@ -1,0 +1,319 @@
+
+# re-export CF constant string constants as their NS equivalents
+
+# Run Loops
+_kCFRunLoopDefaultMode  _NSDefaultRunLoopMode
+_kCFRunLoopCommonModes  _NSRunLoopCommonModes
+
+# Notifications
+_kCFTimeZoneSystemTimeZoneDidChangeNotification     _NSSystemTimeZoneDidChangeNotification
+_kCFLocaleCurrentLocaleDidChangeNotification        _NSCurrentLocaleDidChangeNotification
+
+# Calendars
+_kCFBuddhistCalendar        _NSBuddhistCalendar
+_kCFChineseCalendar         _NSChineseCalendar
+_kCFRepublicOfChinaCalendar _NSRepublicOfChinaCalendar
+_kCFPersianCalendar         _NSPersianCalendar
+_kCFGregorianCalendar       _NSGregorianCalendar
+_kCFHebrewCalendar          _NSHebrewCalendar
+_kCFISO8601Calendar         _NSISO8601Calendar
+_kCFIndianCalendar          _NSIndianCalendar
+_kCFIslamicCalendar         _NSIslamicCalendar
+_kCFIslamicCivilCalendar    _NSIslamicCivilCalendar
+_kCFJapaneseCalendar        _NSJapaneseCalendar
+
+# Calendar Indentifiers
+_kCFCalendarIdentifierBuddhist              _NSCalendarIdentifierBuddhist
+_kCFCalendarIdentifierChinese               _NSCalendarIdentifierChinese
+_kCFCalendarIdentifierCoptic                _NSCalendarIdentifierCoptic
+_kCFCalendarIdentifierEthiopicAmeteAlem     _NSCalendarIdentifierEthiopicAmeteAlem
+_kCFCalendarIdentifierEthiopicAmeteMihret   _NSCalendarIdentifierEthiopicAmeteMihret
+_kCFCalendarIdentifierGregorian             _NSCalendarIdentifierGregorian
+_kCFCalendarIdentifierHebrew                _NSCalendarIdentifierHebrew
+_kCFCalendarIdentifierISO8601               _NSCalendarIdentifierISO8601
+_kCFCalendarIdentifierIndian                _NSCalendarIdentifierIndian
+_kCFCalendarIdentifierIslamic               _NSCalendarIdentifierIslamic
+_kCFCalendarIdentifierIslamicCivil          _NSCalendarIdentifierIslamicCivil
+_kCFCalendarIdentifierIslamicTabular        _NSCalendarIdentifierIslamicTabular
+_kCFCalendarIdentifierIslamicUmmAlQura      _NSCalendarIdentifierIslamicUmmAlQura
+_kCFCalendarIdentifierJapanese              _NSCalendarIdentifierJapanese
+_kCFCalendarIdentifierPersian               _NSCalendarIdentifierPersian
+_kCFCalendarIdentifierRepublicOfChina       _NSCalendarIdentifierRepublicOfChina
+
+# Date Formatter
+_kCFDateFormatterPatternCharacterKey    _NSDateFormatterPatternCharacterKey
+_kCFDateFormatterPatternLiteralKey      _NSDateFormatterPatternLiteralKey
+_kCFDateFormatterPatternRangeKey        _NSDateFormatterPatternRangeKey
+_kCFDateFormatterPatternStringKey       _NSDateFormatterPatternStringKey
+
+# Missing CoreFoundation symbols
+# These are defined in macOS CoreFoundation but missing from Swift CF
+# Need to check that the values are correct
+
+# Locale Keys
+
+# kCFLocaleCalendar has a value of "kCFLocaleCalendarKey"
+# NSLocaleCalendar also has a value of "kCFLocaleCalendarKey"
+# kCFLocaleCalendarKey is defined in swift CF but the other values aren't
+# So for each of these symbols we need 2 lines:
+#       kCF...Key -> kCF... (no key)
+#       kCF...Key -> NS... (no key)
+
+_kCFLocaleCalendarKey               _kCFLocaleCalendar
+_kCFLocaleCalendarKey               _NSLocaleCalendar
+_kCFLocaleCollationIdentifierKey    _kCFLocaleCollationIdentifier
+_kCFLocaleCollationIdentifierKey    _NSLocaleCollationIdentifier
+_kCFLocaleCollatorIdentifierKey     _kCFLocaleCollatorIdentifier
+_kCFLocaleCollatorIdentifierKey     _NSLocaleCollatorIdentifier
+_kCFLocaleCountryCodeKey            _kCFLocaleCountryCode
+_kCFLocaleCountryCodeKey            _NSLocaleCountryCode
+_kCFLocaleCurrencyCodeKey           _kCFLocaleCurrencyCode
+_kCFLocaleCurrencyCodeKey           _NSLocaleCurrencyCode
+_kCFLocaleCurrencySymbolKey         _kCFLocaleCurrencySymbol
+_kCFLocaleCurrencySymbolKey         _NSLocaleCurrencySymbol
+_kCFLocaleDecimalSeparatorKey       _kCFLocaleDecimalSeparator
+_kCFLocaleDecimalSeparatorKey       _NSLocaleDecimalSeparator
+_kCFLocaleExemplarCharacterSetKey   _kCFLocaleExemplarCharacterSet
+_kCFLocaleExemplarCharacterSetKey   _NSLocaleExemplarCharacterSet
+_kCFLocaleGroupingSeparatorKey      _kCFLocaleGroupingSeparator
+_kCFLocaleGroupingSeparatorKey      _NSLocaleGroupingSeparator
+_kCFLocaleIdentifierKey             _kCFLocaleIdentifier
+_kCFLocaleIdentifierKey             _NSLocaleIdentifier
+_kCFLocaleLanguageCodeKey           _kCFLocaleLanguageCode
+_kCFLocaleLanguageCodeKey           _NSLocaleLanguageCode
+_kCFLocaleScriptCodeKey             _kCFLocaleScriptCode
+_kCFLocaleScriptCodeKey             _NSLocaleScriptCode
+_kCFLocaleTemperatureUnitKey        _kCFLocaleTemperatureUnit
+_kCFLocaleTemperatureUnitKey        _NSLocaleTemperatureUnit
+_kCFLocaleUsesMetricSystemKey       _kCFLocaleUsesMetricSystem
+_kCFLocaleUsesMetricSystemKey       _NSLocaleUsesMetricSystem
+_kCFLocaleVariantCodeKey            _kCFLocaleVariantCode
+_kCFLocaleVariantCodeKey            _NSLocaleVariantCode
+
+_kCFLocaleMeasurementSystemKey      _kCFLocaleMeasurementSystem
+_kCFLocaleMeasurementSystemKey      _NSLocaleMeasurementSystem
+_kCFLocaleMeasurementSystemMetric   _NSLocaleMeasurementSystemMetric
+_kCFLocaleMeasurementSystemUK       _NSLocaleMeasurementSystemUK
+_kCFLocaleMeasurementSystemUS       _NSLocaleMeasurementSystemUS
+
+_kCFLocaleCalendarIdentifier        _NSLocaleCalendarIdentifier
+_kCFLocaleCalendarIdentifierKey     _NSLocaleCalendarIdentifierKey
+
+_kCFLocaleAlternateQuotationBeginDelimiterKey   _NSLocaleAlternateQuotationBeginDelimiterKey
+_kCFLocaleAlternateQuotationEndDelimiterKey     _NSLocaleAlternateQuotationEndDelimiterKey
+_kCFLocaleQuotationBeginDelimiterKey            _NSLocaleQuotationBeginDelimiterKey
+_kCFLocaleQuotationEndDelimiterKey              _NSLocaleQuotationEndDelimiterKey
+_kCFLocaleTemperatureUnitCelsius                _NSLocaleTemperatureUnitCelsius
+_kCFLocaleTemperatureUnitFahrenheit             _NSLocaleTemperatureUnitFahrenheit
+
+_kCFLocaleCalendarKey               _NSLocaleCalendarKey
+_kCFLocaleCollationIdentifierKey    _NSLocaleCollationIdentifierKey
+_kCFLocaleCollatorIdentifierKey     _NSLocaleCollatorIdentifierKey
+_kCFLocaleCountryCodeKey            _NSLocaleCountryCodeKey
+_kCFLocaleCurrencyCodeKey           _NSLocaleCurrencyCodeKey
+_kCFLocaleCurrencySymbolKey         _NSLocaleCurrencySymbolKey
+_kCFLocaleDecimalSeparatorKey       _NSLocaleDecimalSeparatorKey
+_kCFLocaleExemplarCharacterSetKey   _NSLocaleExemplarCharacterSetKey
+_kCFLocaleGroupingSeparatorKey      _NSLocaleGroupingSeparatorKey
+_kCFLocaleIdentifierKey             _NSLocaleIdentifierKey
+_kCFLocaleLanguageCodeKey           _NSLocaleLanguageCodeKey
+_kCFLocaleMeasurementSystemKey      _NSLocaleMeasurementSystemKey
+_kCFLocaleScriptCodeKey             _NSLocaleScriptCodeKey
+_kCFLocaleTemperatureUnitKey        _NSLocaleTemperatureUnitKey
+_kCFLocaleUsesMetricSystemKey       _NSLocaleUsesMetricSystemKey
+_kCFLocaleVariantCodeKey            _NSLocaleVariantCodeKey
+
+# Streams
+_kCFStreamPropertyDataWritten               _NSStreamDataWrittenToMemoryStreamKey
+_kCFStreamPropertyFileCurrentOffset         _NSStreamFileCurrentOffsetKey
+_kCFStreamPropertySOCKSProxy                _NSStreamSOCKSProxyConfigurationKey
+_kCFStreamPropertySOCKSProxyHost            _NSStreamSOCKSProxyHostKey
+_kCFStreamPropertySOCKSPassword             _NSStreamSOCKSProxyPasswordKey
+_kCFStreamPropertySOCKSProxyPort            _NSStreamSOCKSProxyPortKey
+_kCFStreamPropertySOCKSUser                 _NSStreamSOCKSProxyUserKey
+_kCFStreamSocketSOCKSVersion4               _NSStreamSOCKSProxyVersion4
+_kCFStreamSocketSOCKSVersion5               _NSStreamSOCKSProxyVersion5
+_kCFStreamPropertySOCKSVersion              _NSStreamSOCKSProxyVersionKey
+_kCFStreamPropertySocketSecurityLevel       _NSStreamSocketSecurityLevelKey
+_kCFStreamSocketSecurityLevelNegotiatedSSL  _NSStreamSocketSecurityLevelNegotiatedSSL
+_kCFStreamSocketSecurityLevelNone           _NSStreamSocketSecurityLevelNone
+_kCFStreamSocketSecurityLevelSSLv2          _NSStreamSocketSecurityLevelSSLv2
+_kCFStreamSocketSecurityLevelSSLv3          _NSStreamSocketSecurityLevelSSLv3
+_kCFStreamSocketSecurityLevelTLSv1          _NSStreamSocketSecurityLevelTLSv1
+
+# String Transforms
+_kCFStringTransformFullwidthHalfwidth   _NSStringTransformFullwidthToHalfwidth
+_kCFStringTransformHiraganaKatakana     _NSStringTransformHiraganaToKatakana
+_kCFStringTransformLatinArabic          _NSStringTransformLatinToArabic
+_kCFStringTransformLatinCyrillic        _NSStringTransformLatinToCyrillic
+_kCFStringTransformLatinGreek           _NSStringTransformLatinToGreek
+_kCFStringTransformLatinHangul          _NSStringTransformLatinToHangul
+_kCFStringTransformLatinHebrew          _NSStringTransformLatinToHebrew
+_kCFStringTransformLatinHiragana        _NSStringTransformLatinToHiragana
+_kCFStringTransformLatinKatakana        _NSStringTransformLatinToKatakana
+_kCFStringTransformLatinThai            _NSStringTransformLatinToThai
+_kCFStringTransformMandarinLatin        _NSStringTransformMandarinToLatin
+_kCFStringTransformStripCombiningMarks  _NSStringTransformStripCombiningMarks
+_kCFStringTransformStripDiacritics      _NSStringTransformStripDiacritics
+_kCFStringTransformToLatin              _NSStringTransformToLatin
+_kCFStringTransformToUnicodeName        _NSStringTransformToUnicodeName
+_kCFStringTransformToXMLHex             _NSStringTransformToXMLHex
+
+# URLs
+# file system resources
+_kCFURLNameKey                      _NSURLNameKey
+_kCFURLLocalizedNameKey             _NSURLLocalizedNameKey
+_kCFURLIsRegularFileKey             _NSURLIsRegularFileKey
+_kCFURLIsDirectoryKey               _NSURLIsDirectoryKey
+_kCFURLIsSymbolicLinkKey            _NSURLIsSymbolicLinkKey
+_kCFURLIsVolumeKey                  _NSURLIsVolumeKey
+_kCFURLIsPackageKey                 _NSURLIsPackageKey
+_kCFURLIsApplicationKey             _NSURLIsApplicationKey
+_kCFURLApplicationIsScriptableKey   _NSURLApplicationIsScriptableKey
+_kCFURLIsSystemImmutableKey         _NSURLIsSystemImmutableKey
+_kCFURLIsUserImmutableKey           _NSURLIsUserImmutableKey
+_kCFURLIsHiddenKey                  _NSURLIsHiddenKey
+_kCFURLHasHiddenExtensionKey        _NSURLHasHiddenExtensionKey
+_kCFURLCreationDateKey              _NSURLCreationDateKey
+_kCFURLContentAccessDateKey         _NSURLContentAccessDateKey
+_kCFURLContentModificationDateKey   _NSURLContentModificationDateKey
+_kCFURLAttributeModificationDateKey _NSURLAttributeModificationDateKey
+_kCFURLLinkCountKey                 _NSURLLinkCountKey
+_kCFURLParentDirectoryURLKey        _NSURLParentDirectoryURLKey
+_kCFURLVolumeURLKey                 _NSURLVolumeURLKey
+_kCFURLTypeIdentifierKey            _NSURLTypeIdentifierKey
+_kCFURLLocalizedTypeDescriptionKey  _NSURLLocalizedTypeDescriptionKey
+_kCFURLLabelNumberKey               _NSURLLabelNumberKey
+_kCFURLLabelColorKey                _NSURLLabelColorKey
+_kCFURLLocalizedLabelKey            _NSURLLocalizedLabelKey
+_kCFURLEffectiveIconKey             _NSURLEffectiveIconKey
+_kCFURLCustomIconKey                _NSURLCustomIconKey
+_kCFURLFileResourceIdentifierKey    _NSURLFileResourceIdentifierKey
+_kCFURLVolumeIdentifierKey          _NSURLVolumeIdentifierKey
+_kCFURLPreferredIOBlockSizeKey      _NSURLPreferredIOBlockSizeKey
+_kCFURLIsReadableKey                _NSURLIsReadableKey
+_kCFURLIsWritableKey                _NSURLIsWritableKey
+_kCFURLIsExecutableKey              _NSURLIsExecutableKey
+_kCFURLFileSecurityKey              _NSURLFileSecurityKey
+_kCFURLIsExcludedFromBackupKey      _NSURLIsExcludedFromBackupKey
+_kCFURLTagNamesKey                  _NSURLTagNamesKey
+_kCFURLPathKey                      _NSURLPathKey
+_kCFURLCanonicalPathKey             _NSURLCanonicalPathKey
+_kCFURLIsMountTriggerKey            _NSURLIsMountTriggerKey
+_kCFURLGenerationIdentifierKey      _NSURLGenerationIdentifierKey
+_kCFURLDocumentIdentifierKey        _NSURLDocumentIdentifierKey
+_kCFURLAddedToDirectoryDateKey      _NSURLAddedToDirectoryDateKey
+_kCFURLQuarantinePropertiesKey      _NSURLQuarantinePropertiesKey
+_kCFURLFileResourceTypeKey          _NSURLFileResourceTypeKey
+
+_kCFURLKeysOfUnsetValuesKey     _NSURLKeysOfUnsetValuesKey
+
+# File System Object Types
+_kCFURLFileResourceTypeNamedPipe        _NSURLFileResourceTypeNamedPipe
+_kCFURLFileResourceTypeCharacterSpecial _NSURLFileResourceTypeCharacterSpecial
+_kCFURLFileResourceTypeDirectory        _NSURLFileResourceTypeDirectory
+_kCFURLFileResourceTypeBlockSpecial     _NSURLFileResourceTypeBlockSpecial
+_kCFURLFileResourceTypeRegular          _NSURLFileResourceTypeRegular
+_kCFURLFileResourceTypeSymbolicLink     _NSURLFileResourceTypeSymbolicLink
+_kCFURLFileResourceTypeSocket           _NSURLFileResourceTypeSocket
+_kCFURLFileResourceTypeUnknown          _NSURLFileResourceTypeUnknown
+
+# File Properties
+_kCFURLFileSizeKey                  _NSURLFileSizeKey
+_kCFURLFileAllocatedSizeKey         _NSURLFileAllocatedSizeKey
+_kCFURLTotalFileSizeKey             _NSURLTotalFileSizeKey
+_kCFURLTotalFileAllocatedSizeKey    _NSURLTotalFileAllocatedSizeKey
+_kCFURLIsAliasFileKey               _NSURLIsAliasFileKey
+_kCFURLFileProtectionKey            _NSURLFileProtectionKey
+
+# Protection Levels
+_kCFURLFileProtectionNone                                   _NSURLFileProtectionNone
+_kCFURLFileProtectionComplete                               _NSURLFileProtectionComplete
+_kCFURLFileProtectionCompleteUnlessOpen                     _NSURLFileProtectionCompleteUnlessOpen
+_kCFURLFileProtectionCompleteUntilFirstUserAuthentication   _NSURLFileProtectionCompleteUntilFirstUserAuthentication
+
+# Volume Properties
+_kCFURLVolumeLocalizedFormatDescriptionKey              _NSURLVolumeLocalizedFormatDescriptionKey
+_kCFURLVolumeTotalCapacityKey                           _NSURLVolumeTotalCapacityKey
+_kCFURLVolumeAvailableCapacityKey                       _NSURLVolumeAvailableCapacityKey
+_kCFURLVolumeResourceCountKey                           _NSURLVolumeResourceCountKey
+_kCFURLVolumeSupportsPersistentIDsKey                   _NSURLVolumeSupportsPersistentIDsKey
+_kCFURLVolumeSupportsSymbolicLinksKey                   _NSURLVolumeSupportsSymbolicLinksKey
+_kCFURLVolumeSupportsHardLinksKey                       _NSURLVolumeSupportsHardLinksKey
+_kCFURLVolumeSupportsJournalingKey                      _NSURLVolumeSupportsJournalingKey
+_kCFURLVolumeIsJournalingKey                            _NSURLVolumeIsJournalingKey
+_kCFURLVolumeSupportsSparseFilesKey                     _NSURLVolumeSupportsSparseFilesKey
+_kCFURLVolumeSupportsZeroRunsKey                        _NSURLVolumeSupportsZeroRunsKey
+_kCFURLVolumeSupportsCaseSensitiveNamesKey              _NSURLVolumeSupportsCaseSensitiveNamesKey
+_kCFURLVolumeSupportsCasePreservedNamesKey              _NSURLVolumeSupportsCasePreservedNamesKey
+_kCFURLVolumeSupportsRootDirectoryDatesKey              _NSURLVolumeSupportsRootDirectoryDatesKey
+_kCFURLVolumeSupportsVolumeSizesKey                     _NSURLVolumeSupportsVolumeSizesKey
+_kCFURLVolumeSupportsRenamingKey                        _NSURLVolumeSupportsRenamingKey
+_kCFURLVolumeSupportsAdvisoryFileLockingKey             _NSURLVolumeSupportsAdvisoryFileLockingKey
+_kCFURLVolumeSupportsExtendedSecurityKey                _NSURLVolumeSupportsExtendedSecurityKey
+_kCFURLVolumeIsBrowsableKey                             _NSURLVolumeIsBrowsableKey
+_kCFURLVolumeMaximumFileSizeKey                         _NSURLVolumeMaximumFileSizeKey
+_kCFURLVolumeIsEjectableKey                             _NSURLVolumeIsEjectableKey
+_kCFURLVolumeIsRemovableKey                             _NSURLVolumeIsRemovableKey
+_kCFURLVolumeIsInternalKey                              _NSURLVolumeIsInternalKey
+_kCFURLVolumeIsAutomountedKey                           _NSURLVolumeIsAutomountedKey
+_kCFURLVolumeIsLocalKey                                 _NSURLVolumeIsLocalKey
+_kCFURLVolumeIsReadOnlyKey                              _NSURLVolumeIsReadOnlyKey
+_kCFURLVolumeCreationDateKey                            _NSURLVolumeCreationDateKey
+_kCFURLVolumeURLForRemountingKey                        _NSURLVolumeURLForRemountingKey
+_kCFURLVolumeUUIDStringKey                              _NSURLVolumeUUIDStringKey
+_kCFURLVolumeNameKey                                    _NSURLVolumeNameKey
+_kCFURLVolumeLocalizedNameKey                           _NSURLVolumeLocalizedNameKey
+_kCFURLVolumeIsEncryptedKey                             _NSURLVolumeIsEncryptedKey
+_kCFURLVolumeIsRootFileSystemKey                        _NSURLVolumeIsRootFileSystemKey
+_kCFURLVolumeSupportsCompressionKey                     _NSURLVolumeSupportsCompressionKey
+_kCFURLVolumeSupportsFileCloningKey                     _NSURLVolumeSupportsFileCloningKey
+_kCFURLVolumeSupportsSwapRenamingKey                    _NSURLVolumeSupportsSwapRenamingKey
+_kCFURLVolumeSupportsExclusiveRenamingKey               _NSURLVolumeSupportsExclusiveRenamingKey
+_kCFURLVolumeAvailableCapacityForImportantUsageKey      _NSURLVolumeAvailableCapacityForImportantUsageKey
+_kCFURLVolumeAvailableCapacityForOpportunisticUsageKey  _NSURLVolumeAvailableCapacityForOpportunisticUsageKey
+_kCFURLVolumeSupportsAccessPermissionsKey               _NSURLVolumeSupportsAccessPermissionsKey
+_kCFURLVolumeSupportsImmutableFilesKey                  _NSURLVolumeSupportsImmutableFilesKey
+
+# Ubiquitous Item Properties
+_kCFURLIsUbiquitousItemKey                                      _NSURLIsUbiquitousItemKey
+_kCFURLUbiquitousItemHasUnresolvedConflictsKey                  _NSURLUbiquitousItemHasUnresolvedConflictsKey
+_kCFURLUbiquitousItemIsDownloadedKey                            _NSURLUbiquitousItemIsDownloadedKey
+_kCFURLUbiquitousItemIsDownloadingKey                           _NSURLUbiquitousItemIsDownloadingKey
+_kCFURLUbiquitousItemIsUploadedKey                              _NSURLUbiquitousItemIsUploadedKey
+_kCFURLUbiquitousItemIsUploadingKey                             _NSURLUbiquitousItemIsUploadingKey
+_kCFURLUbiquitousItemPercentDownloadedKey                       _NSURLUbiquitousItemPercentDownloadedKey
+_kCFURLUbiquitousItemPercentUploadedKey                         _NSURLUbiquitousItemPercentUploadedKey
+_kCFURLUbiquitousItemDownloadingStatusKey                       _NSURLUbiquitousItemDownloadingStatusKey
+_kCFURLUbiquitousItemDownloadingErrorKey                        _NSURLUbiquitousItemDownloadingErrorKey
+_kCFURLUbiquitousItemUploadingErrorKey                          _NSURLUbiquitousItemUploadingErrorKey
+_kCFURLUbiquitousItemDownloadRequestedKey                       _NSURLUbiquitousItemDownloadRequestedKey
+_kCFURLUbiquitousItemContainerDisplayNameKey                    _NSURLUbiquitousItemContainerDisplayNameKey
+_kCFURLUbiquitousItemIsSharedKey                                _NSURLUbiquitousItemIsSharedKey
+_kCFURLUbiquitousSharedItemCurrentUserRoleKey                   _NSURLUbiquitousSharedItemCurrentUserRoleKey
+_kCFURLUbiquitousSharedItemRoleOwner                            _NSURLUbiquitousSharedItemRoleOwner
+_kCFURLUbiquitousSharedItemRoleParticipant                      _NSURLUbiquitousSharedItemRoleParticipant
+_kCFURLUbiquitousSharedItemOwnerNameComponentsKey               _NSURLUbiquitousSharedItemOwnerNameComponentsKey
+_kCFURLUbiquitousSharedItemMostRecentEditorNameComponentsKey    _NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey
+
+# Ubiquitous Shared Item Premissions
+_kCFURLUbiquitousSharedItemCurrentUserPermissionsKey    _NSURLUbiquitousSharedItemCurrentUserPermissionsKey
+_kCFURLUbiquitousSharedItemPermissionsReadOnly          _NSURLUbiquitousSharedItemPermissionsReadOnly
+_kCFURLUbiquitousSharedItemPermissionsReadWrite         _NSURLUbiquitousSharedItemPermissionsReadWrite
+
+# Ubiquitous Item Downloading Status Key
+_kCFURLUbiquitousItemDownloadingStatusNotDownloaded _NSURLUbiquitousItemDownloadingStatusNotDownloaded
+_kCFURLUbiquitousItemDownloadingStatusDownloaded    _NSURLUbiquitousItemDownloadingStatusDownloaded
+_kCFURLUbiquitousItemDownloadingStatusCurrent       _NSURLUbiquitousItemDownloadingStatusCurrent
+
+# deprecated
+_kCFURLUbiquitousSharedItemRoleKey              _NSURLUbiquitousSharedItemRoleKey
+_kCFURLUbiquitousSharedItemOwnerNameKey         _NSURLUbiquitousSharedItemOwnerNameKey
+_kCFURLUbiquitousSharedItemPermissionsKey       _NSURLUbiquitousSharedItemPermissionsKey
+_kCFURLUbiquitousSharedItemReadOnlyPermissions  _NSURLUbiquitousSharedItemReadOnlyPermissions
+_kCFURLUbiquitousSharedItemReadWritePermissions _NSURLUbiquitousSharedItemReadWritePermissions
+
+# Foundation Only
+_kCFURLThumbnailDictionaryKey   _NSURLThumbnailDictionaryKey
+_kCFURLThumbnailKey             _NSURLThumbnailKey
+_kCFThumbnail1024x1024SizeKey   _NSThumbnail1024x1024SizeKey

@@ -36,6 +36,7 @@
 OBJC_EXPORT void *objc_destructInstance(id obj);
 #endif
 
+#include <CoreFoundation/CFAttributedString.h>
 
 #if DEPLOYMENT_TARGET_WINDOWS
 #include <Shellapi.h>
@@ -344,7 +345,7 @@ CFTypeRef _CFRuntimeCreateInstance(CFAllocatorRef allocator, CFTypeID typeID, CF
     CFAssert1(typeID != _kCFRuntimeNotATypeID, __kCFLogAssertion, "%s(): Uninitialized type id", __PRETTY_FUNCTION__);
     CFRuntimeClass *cls = __CFRuntimeClassTable[typeID];
     if (NULL == cls) {
-	return NULL;
+        return NULL;
     }
     if (cls->version & _kCFRuntimeRequiresAlignment) {
         allocator = kCFAllocatorSystemDefault;
@@ -356,7 +357,7 @@ CFTypeRef _CFRuntimeCreateInstance(CFAllocatorRef allocator, CFTypeID typeID, CF
     }
     CFAllocatorRef realAllocator = (NULL == allocator) ? __CFGetDefaultAllocator() : allocator;
     if (kCFAllocatorNull == realAllocator) {
-	return NULL;
+        return NULL;
     }
     Boolean usesSystemDefaultAllocator = _CFAllocatorIsSystemDefault(realAllocator);
     size_t align = (cls->version & _kCFRuntimeRequiresAlignment) ? cls->requiredAlignment : 16;
@@ -372,19 +373,19 @@ CFTypeRef _CFRuntimeCreateInstance(CFAllocatorRef allocator, CFTypeID typeID, CF
         memory = (CFRuntimeBase *)CFAllocatorAllocate(allocator, size, 0);
     }
     if (NULL == memory) {
-	return NULL;
+        return NULL;
     }
     memset(memory, 0, size);
     if (__CFOASafe && category) {
-	__CFSetLastAllocationEventName(memory, (char *)category);
+        __CFSetLastAllocationEventName(memory, (char *)category);
     } else if (__CFOASafe) {
-	__CFSetLastAllocationEventName(memory, (char *)cls->className);
+        __CFSetLastAllocationEventName(memory, (char *)cls->className);
     }
     if (!usesSystemDefaultAllocator) {
         // add space to hold allocator ref for non-standard allocators.
         // This means the allocator is 16 bytes before the result. See the line where we added 16 bytes above, when !usesSystemDefaultAllocator
-	*(CFAllocatorRef *)((char *)memory) = (CFAllocatorRef)CFRetain(realAllocator);
-	memory = (CFRuntimeBase *)((char *)memory + 16);
+        *(CFAllocatorRef *)((char *)memory) = (CFAllocatorRef)CFRetain(realAllocator);
+        memory = (CFRuntimeBase *)((char *)memory + 16);
     }
     uint32_t rc = 0;
 #if __LP64__
@@ -403,7 +404,7 @@ CFTypeRef _CFRuntimeCreateInstance(CFAllocatorRef allocator, CFTypeID typeID, CF
     *cfinfop = (uint32_t)((rc << 24) | (customRC ? 0x800000 : 0x0) | ((uint32_t)typeID << 8) | (usesSystemDefaultAllocator ? 0x80 : 0x00));
     memory->_cfisa = __CFISAForTypeID(typeID);
     if (NULL != cls->init) {
-	(cls->init)(memory);
+        (cls->init)(memory);
     }
     return memory;
 #endif
@@ -455,6 +456,7 @@ void _CFRuntimeSetInstanceTypeID(CFTypeRef cf, CFTypeID newTypeID) {
 
 CF_PRIVATE void _CFRuntimeSetInstanceTypeIDAndIsa(CFTypeRef cf, CFTypeID newTypeID) {
     _CFRuntimeSetInstanceTypeID(cf, newTypeID);
+    ((CFRuntimeBase *)cf)->_cfisa = __CFISAForTypeID(newTypeID);
 #if DEPLOYMENT_RUNTIME_SWIFT
     if (((CFRuntimeBase *)cf)->_cfisa != __CFISAForTypeID(newTypeID)) {
         ((CFSwiftRef)cf)->isa = (uintptr_t)__CFISAForTypeID(newTypeID);
@@ -1108,6 +1110,34 @@ void __CFInitialize(void) {
         CFCalendarGetTypeID();
 #endif
 #endif
+        
+        // NSCFConstantString is only available if Foundation is loaded
+        Class class = objc_getClass("__NSCFConstantString");
+        if (class) {
+            // The isa of constant strings point to __CFConstantStringClassReference
+            // By copying the Class info for NSCFConstantString into this structure we bridge the strings
+            memcpy(__CFConstantStringClassReference, class, sizeof(__CFConstantStringClassReference));
+            
+            // Install the bridge for all other bridged classes
+            // The bridge for CFNull is in the once block of CFNullGetTypeID()
+            _CFRuntimeBridgeTypeToClass(CFArrayGetTypeID(), objc_getClass("__NSCFArray"));
+            _CFRuntimeBridgeTypeToClass(CFAttributedStringGetTypeID(), objc_getClass("__NSCFAttributedString"));
+            _CFRuntimeBridgeTypeToClass(CFCalendarGetTypeID(), objc_getClass("__NSCFCalendar"));
+            _CFRuntimeBridgeTypeToClass(CFCharacterSetGetTypeID(), objc_getClass("__NSCFCharacterSet"));
+            _CFRuntimeBridgeTypeToClass(CFDataGetTypeID(), objc_getClass("__NSCFData"));
+            _CFRuntimeBridgeTypeToClass(CFDateGetTypeID(), objc_getClass("__NSDate"));
+            _CFRuntimeBridgeTypeToClass(CFDictionaryGetTypeID(), objc_getClass("__NSCFDictionary"));
+            _CFRuntimeBridgeTypeToClass(CFErrorGetTypeID(), objc_getClass("__NSCFError"));
+            _CFRuntimeBridgeTypeToClass(CFLocaleGetTypeID(), objc_getClass("__NSCFLocale"));
+            _CFRuntimeBridgeTypeToClass(CFNumberGetTypeID(), objc_getClass("__NSCFNumber"));
+            _CFRuntimeBridgeTypeToClass(CFReadStreamGetTypeID(), objc_getClass("NSCFReadStream")); // <-- check
+            _CFRuntimeBridgeTypeToClass(CFWriteStreamGetTypeID(), objc_getClass("NSCFWriteStream")); // <-- check
+            _CFRuntimeBridgeTypeToClass(CFRunLoopTimerGetTypeID(), objc_getClass("__NSCFTimer"));
+            _CFRuntimeBridgeTypeToClass(CFSetGetTypeID(), objc_getClass("__NSCFSet"));
+            _CFRuntimeBridgeTypeToClass(CFStringGetTypeID(), objc_getClass("__NSCFString"));
+            _CFRuntimeBridgeTypeToClass(CFTimeZoneGetTypeID(), objc_getClass("__NSTimeZone"));
+            _CFRuntimeBridgeTypeToClass(CFURLGetTypeID(), objc_getClass("NSURL"));
+        }
         
         __CFFileDescriptorInitialize();
         __CFNotificationCenterInitialize();

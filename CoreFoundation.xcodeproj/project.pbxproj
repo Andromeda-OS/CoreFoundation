@@ -10,6 +10,10 @@
 		1770B6C9205EBF2000AE51C9 /* CFFileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */; };
 		1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */; };
 		1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B7252064486D00AE51C9 /* CFNotificationCenter.c */; };
+		17AC89A92066F257008FB2ED /* FoundationSymbolAliases in Resources */ = {isa = PBXBuildFile; fileRef = 17AC89A82066F257008FB2ED /* FoundationSymbolAliases */; };
+		17AC89AB2066F916008FB2ED /* FoundationSymbols.c in Sources */ = {isa = PBXBuildFile; fileRef = 17AC89AA2066F916008FB2ED /* FoundationSymbols.c */; };
+		17AC89BA20683B18008FB2ED /* FoundationFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AC89B820683B18008FB2ED /* FoundationFunctions.h */; };
+		17AC89BB20683B18008FB2ED /* FoundationFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 17AC89B920683B18008FB2ED /* FoundationFunctions.c */; };
 		3920B1441E3DB06700BDE669 /* CFNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3920B1451E3DB06C00BDE669 /* CFUserNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0831E3DB05700BDE669 /* CFUserNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3920B1461E3DB09D00BDE669 /* CFAsmMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3920B0851E3DB05700BDE669 /* CFAsmMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -187,6 +191,10 @@
 		1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFileDescriptor.h; sourceTree = "<group>"; };
 		1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFFileDescriptor.c; sourceTree = "<group>"; };
 		1770B7252064486D00AE51C9 /* CFNotificationCenter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFNotificationCenter.c; sourceTree = "<group>"; };
+		17AC89A82066F257008FB2ED /* FoundationSymbolAliases */ = {isa = PBXFileReference; lastKnownFileType = text; path = FoundationSymbolAliases; sourceTree = "<group>"; };
+		17AC89AA2066F916008FB2ED /* FoundationSymbols.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FoundationSymbols.c; sourceTree = "<group>"; };
+		17AC89B820683B18008FB2ED /* FoundationFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoundationFunctions.h; sourceTree = "<group>"; };
+		17AC89B920683B18008FB2ED /* FoundationFunctions.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FoundationFunctions.c; sourceTree = "<group>"; };
 		3920B00C1E3DAABF00BDE669 /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3920B0101E3DAABF00BDE669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3920B0811E3DB05700BDE669 /* CFNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFNotificationCenter.h; sourceTree = "<group>"; };
@@ -385,6 +393,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17AC89A52066E5BA008FB2ED /* Foundation.subproj */ = {
+			isa = PBXGroup;
+			children = (
+				17AC89A82066F257008FB2ED /* FoundationSymbolAliases */,
+				17AC89AA2066F916008FB2ED /* FoundationSymbols.c */,
+				17AC89B820683B18008FB2ED /* FoundationFunctions.h */,
+				17AC89B920683B18008FB2ED /* FoundationFunctions.c */,
+			);
+			name = Foundation.subproj;
+			path = CoreFoundation/Foundation.subproj;
+			sourceTree = "<group>";
+		};
 		3920B0021E3DAABF00BDE669 = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +413,7 @@
 				3920B09E1E3DB05700BDE669 /* CharacterSets */,
 				3920B0A31E3DB05700BDE669 /* Collections.subproj */,
 				3920B0B91E3DB05700BDE669 /* Error.subproj */,
+				17AC89A52066E5BA008FB2ED /* Foundation.subproj */,
 				3920B0BD1E3DB05700BDE669 /* Locale.subproj */,
 				3920B0CD1E3DB05700BDE669 /* NumberDate.subproj */,
 				3920B0D61E3DB05700BDE669 /* Parsing.subproj */,
@@ -772,6 +793,7 @@
 				3920B1751E3DB14F00BDE669 /* CFPlugIn.h in Headers */,
 				3920B17B1E3DB16900BDE669 /* CFRunLoop.h in Headers */,
 				3920B17A1E3DB16600BDE669 /* CFMessagePort.h in Headers */,
+				17AC89BA20683B18008FB2ED /* FoundationFunctions.h in Headers */,
 				3920B1771E3DB14F00BDE669 /* CFPlugInCOM.h in Headers */,
 				3920B1691E3DB12200BDE669 /* CFDate.h in Headers */,
 				3920B16A1E3DB12200BDE669 /* CFNumber.h in Headers */,
@@ -893,6 +915,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17AC89A92066F257008FB2ED /* FoundationSymbolAliases in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +956,7 @@
 				3920B1D51E3DB5AC00BDE669 /* CFSocketStream.c in Sources */,
 				3920B1D81E3DB5B900BDE669 /* CFBurstTrie.c in Sources */,
 				3920B1D91E3DB5BB00BDE669 /* CFCharacterSet.c in Sources */,
+				17AC89BB20683B18008FB2ED /* FoundationFunctions.c in Sources */,
 				3920B1EB1E3DB5EF00BDE669 /* CFUnicodePrecomposition.c in Sources */,
 				3920B1DA1E3DB5BD00BDE669 /* CFCharacterSetData.S in Sources */,
 				3920B1DB1E3DB5BF00BDE669 /* CFRegularExpression.c in Sources */,
@@ -979,6 +1003,7 @@
 				3920B1B81E3DB55600BDE669 /* CFNumber.c in Sources */,
 				3920B1B41E3DB54700BDE669 /* CFLocaleKeys.c in Sources */,
 				3920B1AA1E3DB52200BDE669 /* CFBitVector.c in Sources */,
+				17AC89AB2066F916008FB2ED /* FoundationSymbols.c in Sources */,
 				3920B1B51E3DB54900BDE669 /* CFNumberFormatter.c in Sources */,
 				3920B1AC1E3DB52600BDE669 /* CFDictionary.c in Sources */,
 				1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */,
@@ -1101,9 +1126,12 @@
 				INFOPLIST_FILE = CoreFoundation/Info.plist;
 				INSTALL_PATH = /System/Library/Frameworks;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-licucore.A",
 					"-lxml2",
+					"-lobjc",
+					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/Foundation.subproj/FoundationSymbolAliases",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.CoreFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1138,9 +1166,12 @@
 				INFOPLIST_FILE = CoreFoundation/Info.plist;
 				INSTALL_PATH = /System/Library/Frameworks;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-licucore.A",
 					"-lxml2",
+					"-lobjc",
+					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/Foundation.subproj/FoundationSymbolAliases",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.CoreFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";

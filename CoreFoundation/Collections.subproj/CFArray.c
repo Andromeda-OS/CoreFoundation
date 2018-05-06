@@ -303,23 +303,23 @@ static CFArrayRef __CFArrayInit(CFAllocatorRef allocator, UInt32 flags, CFIndex 
     UInt32 size;
     __CFBitfieldSetValue(flags, 31, 2, 0);
     if (__CFArrayCallBacksMatchNull(callBacks)) {
-	__CFBitfieldSetValue(flags, 3, 2, __kCFArrayHasNullCallBacks);
+        __CFBitfieldSetValue(flags, 3, 2, __kCFArrayHasNullCallBacks);
     } else if (__CFArrayCallBacksMatchCFType(callBacks)) {
-	__CFBitfieldSetValue(flags, 3, 2, __kCFArrayHasCFTypeCallBacks);
+        __CFBitfieldSetValue(flags, 3, 2, __kCFArrayHasCFTypeCallBacks);
     } else {
-	__CFBitfieldSetValue(flags, 3, 2, __kCFArrayHasCustomCallBacks);
+        __CFBitfieldSetValue(flags, 3, 2, __kCFArrayHasCustomCallBacks);
     }
     size = __CFArrayGetSizeOfType(flags) - sizeof(CFRuntimeBase);
     switch (__CFBitfieldGetValue(flags, 1, 0)) {
-    case __kCFArrayImmutable:
-	size += capacity * sizeof(struct __CFArrayBucket);
-	break;
-    case __kCFArrayDeque:
-	break;
+        case __kCFArrayImmutable:
+            size += capacity * sizeof(struct __CFArrayBucket);
+            break;
+        case __kCFArrayDeque:
+            break;
     }
     memory = (struct __CFArray*)_CFRuntimeCreateInstance(allocator, CFArrayGetTypeID(), size, NULL);
     if (NULL == memory) {
-	return NULL;
+        return NULL;
     }
     __CFBitfieldSetValue(memory->_base._cfinfo[CF_INFO_BITS], 6, 0, flags);
     __CFArraySetCount((CFArrayRef)memory, 0);

@@ -235,6 +235,10 @@ CF_INLINE Boolean __CFStrIsConstant(CFStringRef str) {
 #endif
 }
 
+Boolean _CFStringIsMutable(CFStringRef string) {
+    return __CFStrIsMutable(string);
+}
+
 CF_INLINE SInt32 __CFStrSkipAnyLengthByte(CFStringRef str)          {return ((str->base._cfinfo[CF_INFO_BITS] & __kCFHasLengthByteMask) == __kCFHasLengthByte) ? 1 : 0;}	// Number of bytes to skip over the length byte in the contents
 
 /* Returns ptr to the buffer (which might include the length byte).
