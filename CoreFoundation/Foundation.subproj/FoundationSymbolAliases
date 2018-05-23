@@ -92,9 +92,6 @@ _kCFLocaleVariantCodeKey            _NSLocaleVariantCode
 
 _kCFLocaleMeasurementSystemKey      _kCFLocaleMeasurementSystem
 _kCFLocaleMeasurementSystemKey      _NSLocaleMeasurementSystem
-_kCFLocaleMeasurementSystemMetric   _NSLocaleMeasurementSystemMetric
-_kCFLocaleMeasurementSystemUK       _NSLocaleMeasurementSystemUK
-_kCFLocaleMeasurementSystemUS       _NSLocaleMeasurementSystemUS
 
 _kCFLocaleCalendarIdentifier        _NSLocaleCalendarIdentifier
 _kCFLocaleCalendarIdentifierKey     _NSLocaleCalendarIdentifierKey

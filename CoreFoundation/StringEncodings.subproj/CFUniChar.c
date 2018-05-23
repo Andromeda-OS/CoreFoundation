@@ -1,7 +1,7 @@
 /*	CFUniChar.c
-	Copyright (c) 2001-2016, Apple Inc. and the Swift project authors
+	Copyright (c) 2001-2017, Apple Inc. and the Swift project authors
  
-	Portions Copyright (c) 2014-2016 Apple Inc. and the Swift project authors
+	Portions Copyright (c) 2014-2017, Apple Inc. and the Swift project authors
 	Licensed under Apache License v2.0 with Runtime Library Exception
 	See http://swift.org/LICENSE.txt for license information
 	See http://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
@@ -713,19 +713,19 @@ static CFLock_t __CFUniCharMappingTableLock = CFLockInit;
 CF_PRIVATE const void *CFUniCharGetMappingData(uint32_t type) {
 
     __CFLock(&__CFUniCharMappingTableLock);
-
+    
     if (NULL == __CFUniCharMappingTables) {
         const void *bytes;
         const void *bodyBase;
         int headerSize;
         int idx, count;
-	int64_t fileSize;
+        int64_t fileSize;
 
         if (!__CFUniCharLoadFile(MAPPING_TABLE_FILE, &bytes, &fileSize) || !__CFSimpleFileSizeVerification(bytes, fileSize)) {
             __CFUnlock(&__CFUniCharMappingTableLock);
             return NULL;
         }
-
+        
 #if defined (__cplusplus)
 		bytes = (uint8_t *)bytes + 4; // Skip Unicode version
 		headerSize = *((uint8_t *)bytes); bytes = (uint8_t *)bytes + sizeof(uint32_t);

@@ -1,7 +1,7 @@
 /*	CFLocaleKeys.c
-	Copyright (c) 2008-2016, Apple Inc. and the Swift project authors
+	Copyright (c) 2008-2017, Apple Inc. and the Swift project authors
  
-	Portions Copyright (c) 2014-2016 Apple Inc. and the Swift project authors
+	Portions Copyright (c) 2014-2017, Apple Inc. and the Swift project authors
 	Licensed under Apache License v2.0 with Runtime Library Exception
 	See http://swift.org/LICENSE.txt for license information
 	See http://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
@@ -28,6 +28,9 @@ CONST_STRING_DECL(kCFLocaleGroupingSeparatorKey, "kCFLocaleGroupingSeparatorKey"
 CONST_STRING_DECL(kCFLocaleIdentifierKey, "kCFLocaleIdentifierKey");
 CONST_STRING_DECL(kCFLocaleLanguageCodeKey, "kCFLocaleLanguageCodeKey");
 CONST_STRING_DECL(kCFLocaleMeasurementSystemKey, "kCFLocaleMeasurementSystemKey");
+CONST_STRING_DECL(kCFLocaleMeasurementSystemMetric, "Metric");
+CONST_STRING_DECL(kCFLocaleMeasurementSystemUS, "U.S.");
+CONST_STRING_DECL(kCFLocaleMeasurementSystemUK, "U.K.");
 CONST_STRING_DECL(kCFLocaleTemperatureUnitKey, "kCFLocaleTemperatureUnitKey");
 CONST_STRING_DECL(kCFLocaleTemperatureUnitCelsius, "Celsius");
 CONST_STRING_DECL(kCFLocaleTemperatureUnitFahrenheit, "Fahrenheit");
@@ -148,7 +151,8 @@ CONST_STRING_DECL(kCFCopticCalendar, "coptic");
 CONST_STRING_DECL(kCFEthiopicAmeteMihretCalendar, "ethiopic");
 CONST_STRING_DECL(kCFEthiopicAmeteAlemCalendar, "ethiopic-amete-alem");
 
-/* CF_EXPORT const CFCalendarIdentifier kCFBuddhistCalendar;
+/*
+CF_EXPORT const CFCalendarIdentifier kCFBuddhistCalendar;
 CF_EXPORT const CFCalendarIdentifier kCFChineseCalendar;
 CF_EXPORT const CFCalendarIdentifier kCFHebrewCalendar;
 CF_EXPORT const CFCalendarIdentifier kCFIslamicCalendar;
@@ -162,7 +166,8 @@ CF_EXPORT const CFCalendarIdentifier kCFIslamicTabularCalendar CF_AVAILABLE(10_1
 CF_EXPORT const CFCalendarIdentifier kCFIslamicUmmAlQuraCalendar CF_AVAILABLE(10_10, 8_0);
 CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierCoptic CF_AVAILABLE(10_10, 8_0);
 CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteMihret CF_AVAILABLE(10_10, 8_0);
-CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteAlem CF_AVAILABLE(10_10, 8_0); */
+CF_EXPORT const CFCalendarIdentifier kCFCalendarIdentifierEthiopicAmeteAlem CF_AVAILABLE(10_10, 8_0);
+*/
 
 // Aliases for Linux
 #if DEPLOYMENT_TARGET_LINUX

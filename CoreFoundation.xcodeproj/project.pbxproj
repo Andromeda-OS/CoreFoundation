@@ -10,7 +10,14 @@
 		1770B6C9205EBF2000AE51C9 /* CFFileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */; };
 		1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */; };
 		1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B7252064486D00AE51C9 /* CFNotificationCenter.c */; };
-		17AC89A92066F257008FB2ED /* FoundationSymbolAliases in Resources */ = {isa = PBXBuildFile; fileRef = 17AC89A82066F257008FB2ED /* FoundationSymbolAliases */; };
+		17A1471A20B4993E00653CAF /* CFKnownLocations.c in Sources */ = {isa = PBXBuildFile; fileRef = 17A1471820B4993E00653CAF /* CFKnownLocations.c */; };
+		17A1471B20B4993E00653CAF /* CFKnownLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A1471920B4993E00653CAF /* CFKnownLocations.h */; };
+		17A1471D20B49E4E00653CAF /* CFPropertyList_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A1471C20B49E4E00653CAF /* CFPropertyList_Private.h */; };
+		17A1471F20B4A58400653CAF /* CFBundle_DebugStrings.c in Sources */ = {isa = PBXBuildFile; fileRef = 17A1471E20B4A58400653CAF /* CFBundle_DebugStrings.c */; };
+		17A1472120B4A59500653CAF /* CFBundle_Executable.c in Sources */ = {isa = PBXBuildFile; fileRef = 17A1472020B4A59500653CAF /* CFBundle_Executable.c */; };
+		17A1472320B4A5B700653CAF /* CFBundle_Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 17A1472220B4A5B700653CAF /* CFBundle_Main.c */; };
+		17A1472520B4A5C600653CAF /* CFBundle_ResourceFork.c in Sources */ = {isa = PBXBuildFile; fileRef = 17A1472420B4A5C600653CAF /* CFBundle_ResourceFork.c */; };
+		17A1472720B4A5E100653CAF /* CFBundle_Tables.c in Sources */ = {isa = PBXBuildFile; fileRef = 17A1472620B4A5E100653CAF /* CFBundle_Tables.c */; };
 		17AC89AB2066F916008FB2ED /* FoundationSymbols.c in Sources */ = {isa = PBXBuildFile; fileRef = 17AC89AA2066F916008FB2ED /* FoundationSymbols.c */; };
 		17AC89BA20683B18008FB2ED /* FoundationFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AC89B820683B18008FB2ED /* FoundationFunctions.h */; };
 		17AC89BB20683B18008FB2ED /* FoundationFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 17AC89B920683B18008FB2ED /* FoundationFunctions.c */; };
@@ -134,7 +141,6 @@
 		3920B1BB1E3DB56100BDE669 /* CFOldStylePList.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0D81E3DB05700BDE669 /* CFOldStylePList.c */; };
 		3920B1BC1E3DB56400BDE669 /* CFPropertyList.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0D91E3DB05700BDE669 /* CFPropertyList.c */; };
 		3920B1BD1E3DB56500BDE669 /* CFXMLInputStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0DB1E3DB05700BDE669 /* CFXMLInputStream.c */; };
-		3920B1BE1E3DB56700BDE669 /* CFXMLInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0DD1E3DB05700BDE669 /* CFXMLInterface.c */; };
 		3920B1BF1E3DB56A00BDE669 /* CFXMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0DF1E3DB05700BDE669 /* CFXMLNode.c */; };
 		3920B1C01E3DB56C00BDE669 /* CFXMLParser.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0E11E3DB05700BDE669 /* CFXMLParser.c */; };
 		3920B1C11E3DB56E00BDE669 /* CFXMLTree.c in Sources */ = {isa = PBXBuildFile; fileRef = 3920B0E31E3DB05700BDE669 /* CFXMLTree.c */; };
@@ -191,6 +197,14 @@
 		1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFileDescriptor.h; sourceTree = "<group>"; };
 		1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFFileDescriptor.c; sourceTree = "<group>"; };
 		1770B7252064486D00AE51C9 /* CFNotificationCenter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFNotificationCenter.c; sourceTree = "<group>"; };
+		17A1471820B4993E00653CAF /* CFKnownLocations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFKnownLocations.c; sourceTree = "<group>"; };
+		17A1471920B4993E00653CAF /* CFKnownLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFKnownLocations.h; sourceTree = "<group>"; };
+		17A1471C20B49E4E00653CAF /* CFPropertyList_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFPropertyList_Private.h; sourceTree = "<group>"; };
+		17A1471E20B4A58400653CAF /* CFBundle_DebugStrings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFBundle_DebugStrings.c; sourceTree = "<group>"; };
+		17A1472020B4A59500653CAF /* CFBundle_Executable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFBundle_Executable.c; sourceTree = "<group>"; };
+		17A1472220B4A5B700653CAF /* CFBundle_Main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFBundle_Main.c; sourceTree = "<group>"; };
+		17A1472420B4A5C600653CAF /* CFBundle_ResourceFork.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFBundle_ResourceFork.c; sourceTree = "<group>"; };
+		17A1472620B4A5E100653CAF /* CFBundle_Tables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFBundle_Tables.c; sourceTree = "<group>"; };
 		17AC89A82066F257008FB2ED /* FoundationSymbolAliases */ = {isa = PBXFileReference; lastKnownFileType = text; path = FoundationSymbolAliases; sourceTree = "<group>"; };
 		17AC89AA2066F916008FB2ED /* FoundationSymbols.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FoundationSymbols.c; sourceTree = "<group>"; };
 		17AC89B820683B18008FB2ED /* FoundationFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoundationFunctions.h; sourceTree = "<group>"; };
@@ -468,6 +482,8 @@
 				3920B0891E3DB05700BDE669 /* CFByteOrder.h */,
 				3920B08A1E3DB05700BDE669 /* CFFileUtilities.c */,
 				3920B08B1E3DB05700BDE669 /* CFInternal.h */,
+				17A1471920B4993E00653CAF /* CFKnownLocations.h */,
+				17A1471820B4993E00653CAF /* CFKnownLocations.c */,
 				3920B08C1E3DB05700BDE669 /* CFLogUtilities.h */,
 				3920B08D1E3DB05700BDE669 /* CFPlatform.c */,
 				3920B08E1E3DB05700BDE669 /* CFPriv.h */,
@@ -589,6 +605,7 @@
 				3920B0D81E3DB05700BDE669 /* CFOldStylePList.c */,
 				3920B0D91E3DB05700BDE669 /* CFPropertyList.c */,
 				3920B0DA1E3DB05700BDE669 /* CFPropertyList.h */,
+				17A1471C20B49E4E00653CAF /* CFPropertyList_Private.h */,
 				3920B0DB1E3DB05700BDE669 /* CFXMLInputStream.c */,
 				3920B0DC1E3DB05700BDE669 /* CFXMLInputStream.h */,
 				3920B0DD1E3DB05700BDE669 /* CFXMLInterface.c */,
@@ -606,23 +623,28 @@
 		3920B0E41E3DB05700BDE669 /* PlugIn.subproj */ = {
 			isa = PBXGroup;
 			children = (
-				3920B0E51E3DB05700BDE669 /* CFBundle.c */,
-				3920B0E61E3DB05700BDE669 /* CFBundle.h */,
 				3920B0E71E3DB05700BDE669 /* CFBundle_Binary.c */,
 				3920B0E81E3DB05700BDE669 /* CFBundle_BinaryTypes.h */,
+				17A1471E20B4A58400653CAF /* CFBundle_DebugStrings.c */,
+				17A1472020B4A59500653CAF /* CFBundle_Executable.c */,
 				3920B0E91E3DB05700BDE669 /* CFBundle_Grok.c */,
 				3920B0EA1E3DB05700BDE669 /* CFBundle_InfoPlist.c */,
 				3920B0EB1E3DB05700BDE669 /* CFBundle_Internal.h */,
 				3920B0EC1E3DB05700BDE669 /* CFBundle_Locale.c */,
+				17A1472220B4A5B700653CAF /* CFBundle_Main.c */,
+				17A1472420B4A5C600653CAF /* CFBundle_ResourceFork.c */,
 				3920B0ED1E3DB05700BDE669 /* CFBundle_Resources.c */,
 				3920B0EE1E3DB05700BDE669 /* CFBundle_Strings.c */,
+				17A1472620B4A5E100653CAF /* CFBundle_Tables.c */,
+				3920B0E51E3DB05700BDE669 /* CFBundle.c */,
+				3920B0E61E3DB05700BDE669 /* CFBundle.h */,
 				3920B0EF1E3DB05700BDE669 /* CFBundlePriv.h */,
-				3920B0F01E3DB05700BDE669 /* CFPlugIn.c */,
-				3920B0F11E3DB05700BDE669 /* CFPlugIn.h */,
 				3920B0F21E3DB05700BDE669 /* CFPlugIn_Factory.c */,
 				3920B0F31E3DB05700BDE669 /* CFPlugIn_Factory.h */,
 				3920B0F41E3DB05700BDE669 /* CFPlugIn_Instance.c */,
 				3920B0F51E3DB05700BDE669 /* CFPlugIn_PlugIn.c */,
+				3920B0F01E3DB05700BDE669 /* CFPlugIn.c */,
+				3920B0F11E3DB05700BDE669 /* CFPlugIn.h */,
 				3920B0F61E3DB05700BDE669 /* CFPlugInCOM.h */,
 			);
 			name = PlugIn.subproj;
@@ -661,14 +683,14 @@
 			isa = PBXGroup;
 			children = (
 				3920B1061E3DB05800BDE669 /* CFConcreteStreams.c */,
+				1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */,
+				1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */,
 				3920B1071E3DB05800BDE669 /* CFSocketStream.c */,
 				3920B1081E3DB05800BDE669 /* CFStream.c */,
 				3920B1091E3DB05800BDE669 /* CFStream.h */,
 				3920B10A1E3DB05800BDE669 /* CFStreamAbstract.h */,
 				3920B10B1E3DB05800BDE669 /* CFStreamInternal.h */,
 				3920B10C1E3DB05800BDE669 /* CFStreamPriv.h */,
-				1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */,
-				1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */,
 			);
 			name = Stream.subproj;
 			path = CoreFoundation/Stream.subproj;
@@ -800,6 +822,7 @@
 				3920B16C1E3DB13900BDE669 /* CFPropertyList.h in Headers */,
 				3920B16D1E3DB13900BDE669 /* CFXMLInputStream.h in Headers */,
 				3920B16E1E3DB13900BDE669 /* CFXMLInterface.h in Headers */,
+				17A1471D20B49E4E00653CAF /* CFPropertyList_Private.h in Headers */,
 				3920B16F1E3DB13900BDE669 /* CFXMLNode.h in Headers */,
 				3920B1701E3DB13900BDE669 /* CFXMLParser.h in Headers */,
 				3920B16B1E3DB12200BDE669 /* CFTimeZone.h in Headers */,
@@ -849,6 +872,7 @@
 				3920B14C1E3DB09D00BDE669 /* CFPriv.h in Headers */,
 				3920B14A1E3DB09D00BDE669 /* CFInternal.h in Headers */,
 				3920B1741E3DB14F00BDE669 /* CFBundlePriv.h in Headers */,
+				17A1471B20B4993E00653CAF /* CFKnownLocations.h in Headers */,
 				3920B15E1E3DB0F700BDE669 /* CFError_Private.h in Headers */,
 				3920B1621E3DB10F00BDE669 /* CFICULogging.h in Headers */,
 				3920B1761E3DB14F00BDE669 /* CFPlugIn_Factory.h in Headers */,
@@ -915,7 +939,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17AC89A92066F257008FB2ED /* FoundationSymbolAliases in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,14 +975,17 @@
 				3920B1EC1E3DB5F600BDE669 /* CFURL.c in Sources */,
 				3920B1E71E3DB5E400BDE669 /* CFStringEncodingConverter.c in Sources */,
 				3920B1E91E3DB5EC00BDE669 /* CFUniChar.c in Sources */,
+				17A1472520B4A5C600653CAF /* CFBundle_ResourceFork.c in Sources */,
 				3920B1EA1E3DB5EE00BDE669 /* CFUnicodeDecomposition.c in Sources */,
 				3920B1D51E3DB5AC00BDE669 /* CFSocketStream.c in Sources */,
 				3920B1D81E3DB5B900BDE669 /* CFBurstTrie.c in Sources */,
 				3920B1D91E3DB5BB00BDE669 /* CFCharacterSet.c in Sources */,
+				17A1472120B4A59500653CAF /* CFBundle_Executable.c in Sources */,
 				17AC89BB20683B18008FB2ED /* FoundationFunctions.c in Sources */,
 				3920B1EB1E3DB5EF00BDE669 /* CFUnicodePrecomposition.c in Sources */,
 				3920B1DA1E3DB5BD00BDE669 /* CFCharacterSetData.S in Sources */,
 				3920B1DB1E3DB5BF00BDE669 /* CFRegularExpression.c in Sources */,
+				17A1471F20B4A58400653CAF /* CFBundle_DebugStrings.c in Sources */,
 				3920B1D31E3DB5A200BDE669 /* CFSocket.c in Sources */,
 				3920B1D21E3DB5A000BDE669 /* CFRunLoop.c in Sources */,
 				3920B1DD1E3DB5C400BDE669 /* CFString.c in Sources */,
@@ -968,6 +994,7 @@
 				3920B1E31E3DB5D000BDE669 /* CFUnicodeData.S in Sources */,
 				3920B1E11E3DB5CC00BDE669 /* CFStringUtilities.c in Sources */,
 				3920B1E21E3DB5CE00BDE669 /* CFUniCharPropertyDatabase.S in Sources */,
+				17A1472320B4A5B700653CAF /* CFBundle_Main.c in Sources */,
 				3920B1E01E3DB5CA00BDE669 /* CFStringTransform.c in Sources */,
 				3920B1D11E3DB59E00BDE669 /* CFMessagePort.c in Sources */,
 				3920B1DC1E3DB5C200BDE669 /* CFRunArray.c in Sources */,
@@ -983,18 +1010,19 @@
 				3920B1A91E3DB51F00BDE669 /* CFBinaryHeap.c in Sources */,
 				3920B1C91E3DB58500BDE669 /* CFPlugIn.c in Sources */,
 				3920B1B31E3DB54400BDE669 /* CFLocale.c in Sources */,
+				17A1471A20B4993E00653CAF /* CFKnownLocations.c in Sources */,
 				3920B1C81E3DB58300BDE669 /* CFBundle_Strings.c in Sources */,
 				3920B1CC1E3DB58C00BDE669 /* CFPlugIn_PlugIn.c in Sources */,
 				1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */,
 				3920B1CA1E3DB58600BDE669 /* CFPlugIn_Factory.c in Sources */,
 				3920B1CB1E3DB58900BDE669 /* CFPlugIn_Instance.c in Sources */,
-				3920B1BE1E3DB56700BDE669 /* CFXMLInterface.c in Sources */,
 				3920B1BF1E3DB56A00BDE669 /* CFXMLNode.c in Sources */,
 				3920B1C11E3DB56E00BDE669 /* CFXMLTree.c in Sources */,
 				3920B1BA1E3DB56000BDE669 /* CFBinaryPList.c in Sources */,
 				3920B1C01E3DB56C00BDE669 /* CFXMLParser.c in Sources */,
 				3920B1BD1E3DB56500BDE669 /* CFXMLInputStream.c in Sources */,
 				3920B1BB1E3DB56100BDE669 /* CFOldStylePList.c in Sources */,
+				17A1472720B4A5E100653CAF /* CFBundle_Tables.c in Sources */,
 				3920B1B21E3DB54100BDE669 /* CFDateFormatter.c in Sources */,
 				AA577E451EBD36E0007D9D42 /* CFLocaleIdentifier.c in Sources */,
 				3920B1B91E3DB55800BDE669 /* CFTimeZone.c in Sources */,
@@ -1132,6 +1160,11 @@
 					"-lxml2",
 					"-lobjc",
 					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/Foundation.subproj/FoundationSymbolAliases",
+					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
+					"\n-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
+					"-Wl,-sectcreate,__UNICODE,__properties,CoreFoundation/CharacterSets/CFUniCharPropertyDatabase.data",
+					"-Wl,-sectcreate,__UNICODE,__data,CoreFoundation/CharacterSets/CFUnicodeData-L.mapping",
+					"-Wl,-segprot,__UNICODE,r,r",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.CoreFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1172,6 +1205,11 @@
 					"-lxml2",
 					"-lobjc",
 					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/Foundation.subproj/FoundationSymbolAliases",
+					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
+					"\n-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
+					"-Wl,-sectcreate,__UNICODE,__properties,CoreFoundation/CharacterSets/CFUniCharPropertyDatabase.data",
+					"-Wl,-sectcreate,__UNICODE,__data,CoreFoundation/CharacterSets/CFUnicodeData-L.mapping",
+					"-Wl,-segprot,__UNICODE,r,r",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.CoreFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";

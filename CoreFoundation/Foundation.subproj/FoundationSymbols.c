@@ -19,12 +19,6 @@ CONST_STRING_DECL(NSRangeException, "NSRangeException");
 CONST_STRING_DECL(NSCalendarDayChangedNotification, "NSCalendarDayChangedNotification");
 CONST_STRING_DECL(NSSystemClockDidChangeNotification, "NSSystemClockDidChangeNotification");
 
-// These and their NS versions are exported but don't appear in any header files
-CONST_STRING_DECL(kCFLocaleMeasurementSystemMetric, "Metric");
-CONST_STRING_DECL(kCFLocaleMeasurementSystemUK, "U.K.");
-CONST_STRING_DECL(kCFLocaleMeasurementSystemUS, "U.S.");
-
-
 // These are all marked as CF_EXPORT and have "NS..." values when logged to the console
 // So we need to declare the CF version AND add the NS version to the aliases file
  

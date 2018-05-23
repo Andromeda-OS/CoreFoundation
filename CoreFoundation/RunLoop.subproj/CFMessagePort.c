@@ -1,7 +1,7 @@
 /*	CFMessagePort.c
-	Copyright (c) 1998-2016, Apple Inc. and the Swift project authors
+	Copyright (c) 1998-2017, Apple Inc. and the Swift project authors
  
-	Portions Copyright (c) 2014-2016 Apple Inc. and the Swift project authors
+	Portions Copyright (c) 2014-2017, Apple Inc. and the Swift project authors
 	Licensed under Apache License v2.0 with Runtime Library Exception
 	See http://swift.org/LICENSE.txt for license information
 	See http://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
@@ -28,7 +28,7 @@
 #endif
 #endif
 
-#include "bootstrap_priv.h"
+#include <bootstrap_priv.h>
 
 extern pid_t getpid(void);
 
@@ -75,47 +75,47 @@ struct __CFMessagePort {
 /* Bit 3 in the base reserved bits is used for is-deallocing state */
 
 CF_INLINE Boolean __CFMessagePortIsValid(CFMessagePortRef ms) {
-    return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 0, 0);
+    return __CFRuntimeGetFlag(ms, 0);
 }
 
 CF_INLINE void __CFMessagePortSetValid(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 0, 0, 1);
+    __CFRuntimeSetFlag(ms, 0, true);
 }
 
 CF_INLINE void __CFMessagePortUnsetValid(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 0, 0, 0);
+    __CFRuntimeSetFlag(ms, 0, false);
 }
 
 CF_INLINE Boolean __CFMessagePortExtraMachRef(CFMessagePortRef ms) {
-    return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 1, 1);
+    return __CFRuntimeGetFlag(ms, 1);
 }
 
 CF_INLINE void __CFMessagePortSetExtraMachRef(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 1, 1, 1);
+    __CFRuntimeSetFlag(ms, 1, true);
 }
 
 CF_INLINE void __CFMessagePortUnsetExtraMachRef(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 1, 1, 0);
+    __CFRuntimeSetFlag(ms, 1, false);
 }
 
 CF_INLINE Boolean __CFMessagePortIsRemote(CFMessagePortRef ms) {
-    return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 2, 2);
+    return __CFRuntimeGetFlag(ms, 2);
 }
 
 CF_INLINE void __CFMessagePortSetRemote(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 2, 2, 1);
+    __CFRuntimeSetFlag(ms, 2, true);
 }
 
 CF_INLINE void __CFMessagePortUnsetRemote(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 2, 2, 0);
+    __CFRuntimeSetFlag(ms, 2, false);
 }
 
 CF_INLINE Boolean __CFMessagePortIsDeallocing(CFMessagePortRef ms) {
-    return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 3, 3);
+    return __CFRuntimeGetFlag(ms, 3);
 }
 
 CF_INLINE void __CFMessagePortSetIsDeallocing(CFMessagePortRef ms) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)ms)->_cfinfo[CF_INFO_BITS], 3, 3, 1);
+    __CFRuntimeSetFlag(ms, 3, true);
 }
 
 CF_INLINE void __CFMessagePortLock(CFMessagePortRef ms) {
@@ -384,8 +384,7 @@ static CFMessagePortRef __CFMessagePortCreateLocal(CFAllocatorRef allocator, CFS
 	CFMachPortRef native = NULL;
 	kern_return_t ret = KERN_SUCCESS;
 	mach_port_t bs, mp;
-
-    task_get_bootstrap_port(mach_task_self(), &bs);
+	task_get_bootstrap_port(mach_task_self(), &bs);
 	if (!perPID) {
         ret = bootstrap_check_in(bs, (char *)utfname, &mp); /* If we're started by launchd or the old mach_init */
         if (ret == KERN_SUCCESS) {
@@ -541,7 +540,7 @@ static CFMessagePortRef __CFMessagePortCreateRemote(CFAllocatorRef allocator, CF
     ctx.release = NULL;
     ctx.copyDescription = NULL;
     task_get_bootstrap_port(mach_task_self(), &bp);
-    // added back from CF1153.18
+    // _sjc_ added back from CF1153.18
     ret = bootstrap_look_up2(bp, (char *)utfname, &port, perPID ? (pid_t)pid : 0, perPID ? BOOTSTRAP_PER_PID_SERVICE : 0);
     native = (KERN_SUCCESS == ret) ? CFMachPortCreateWithPort(allocator, port, __CFMessagePortDummyCallback, &ctx, NULL) : NULL;
     CFAllocatorDeallocate(kCFAllocatorSystemDefault, utfname);
@@ -925,7 +924,6 @@ SInt32 CFMessagePortSendRequest(CFMessagePortRef remote, SInt32 msgid, CFDataRef
         sendTimeOut = floor(sendTimeout);
     }
     __CFMessagePortUnlock(remote);
-    
     ret = mach_msg((mach_msg_header_t *)sendmsg, MACH_SEND_MSG|sendOpts, sendmsg->header.msgh_size, 0, MACH_PORT_NULL, sendTimeOut, MACH_PORT_NULL);
     __CFMessagePortLock(remote);
     if (KERN_SUCCESS != ret) {
@@ -1192,7 +1190,7 @@ void CFMessagePortSetDispatchQueue(CFMessagePortRef ms, dispatch_queue_t queue) 
                     if (MACH_RCV_TOO_LARGE != ret) HALT;
 
                     uint32_t newSize = round_msg(msg->msgh_size + MAX_TRAILER_SIZE);
-                    msg = CFAllocatorReallocate(kCFAllocatorSystemDefault, msg, newSize, 0);
+                    msg = __CFSafelyReallocateWithAllocator(kCFAllocatorSystemDefault, msg, newSize, 0, NULL);
                     msg->msgh_size = newSize;
                 }
 

@@ -63,21 +63,22 @@ struct __CFURLComponents {
 static Boolean __CFURLComponentsEqual(CFTypeRef left, CFTypeRef right);
 
 static CFStringRef __CFURLComponentsCopyDescription(CFTypeRef cf) {
-    return CFSTR("A really nice CFURLComponents object");
+    return CFRetain(CFSTR("A really nice CFURLComponents object"));
 }
 
-static void __CFURLComponentsDeallocate(CFTypeRef cf) {
-    CFURLComponentsRef instance = (CFURLComponentsRef)cf;
-    __CFGenericValidateType(cf, _CFURLComponentsGetTypeID());
+CF_CROSS_PLATFORM_EXPORT void __CFURLComponentsDeallocate(CFURLComponentsRef instance) {
+    __CFGenericValidateType(instance, _CFURLComponentsGetTypeID());
     
     if (instance->_urlString) CFRelease(instance->_urlString);
     if (instance->_schemeComponent) CFRelease(instance->_schemeComponent);
     if (instance->_userComponent) CFRelease(instance->_userComponent);
     if (instance->_passwordComponent) CFRelease(instance->_passwordComponent);
     if (instance->_hostComponent) CFRelease(instance->_hostComponent);
+    if (instance->_portComponent) CFRelease(instance->_portComponent);
     if (instance->_pathComponent) CFRelease(instance->_pathComponent);
     if (instance->_queryComponent) CFRelease(instance->_queryComponent);
     if (instance->_fragmentComponent) CFRelease(instance->_fragmentComponent);
+    if (instance) CFAllocatorDeallocate(kCFAllocatorSystemDefault, instance);
 }
 
 static const CFRuntimeClass __CFURLComponentsClass = {
@@ -197,10 +198,12 @@ CF_EXPORT CFURLComponentsRef _CFURLComponentsCreateCopy(CFAllocatorRef alloc, CF
     __CFLock(&components->_lock);
     memory->_lock = CFLockInit;
     memory->_urlString = components->_urlString ? CFStringCreateCopy(alloc, components->_urlString) : NULL;
+    memory->_parseInfo = components->_parseInfo;
     
     memory->_schemeComponentValid = components->_schemeComponentValid;
     memory->_userComponentValid = components->_userComponentValid;
     memory->_hostComponentValid = components->_hostComponentValid;
+    memory->_passwordComponentValid = components->_passwordComponentValid;
     memory->_portComponentValid = components->_portComponentValid;
     memory->_pathComponentValid = components->_pathComponentValid;
     memory->_queryComponentValid = components->_queryComponentValid;
@@ -305,7 +308,9 @@ CF_EXPORT CFURLRef _CFURLComponentsCopyURL(CFURLComponentsRef components) {
 CF_EXPORT CFURLRef _CFURLComponentsCopyURLRelativeToURL(CFURLComponentsRef components, CFURLRef relativeToURL) {
     CFStringRef urlString = _CFURLComponentsCopyString(components);
     if (urlString) {
-        return CFURLCreateWithString(kCFAllocatorSystemDefault, urlString, relativeToURL);
+        CFURLRef url = CFURLCreateWithString(kCFAllocatorSystemDefault, urlString, relativeToURL);
+        CFRelease(urlString);
+        return url;
     } else {
         return NULL;
     }
@@ -551,11 +556,11 @@ CF_EXPORT CFStringRef _CFURLComponentsCopyPath(CFURLComponentsRef components) {
         components->_pathComponentValid = true;
     }
     if (!components->_pathComponent) {
-        result = CFSTR("");
+        result = CFStringCreateCopy(kCFAllocatorSystemDefault, CFSTR(""));
     } else {
         result = _CFStringCreateByRemovingPercentEncoding(kCFAllocatorSystemDefault, components->_pathComponent);
         if (!result) {
-            result = CFSTR("");
+            result = CFStringCreateCopy(kCFAllocatorSystemDefault, CFSTR(""));
         }
     }
     __CFUnlock(&components->_lock);
@@ -740,7 +745,7 @@ CF_EXPORT CFStringRef _CFURLComponentsCopyPercentEncodedPath(CFURLComponentsRef 
     result = components->_pathComponent ? CFRetain(components->_pathComponent) : NULL;
     __CFUnlock(&components->_lock);
     
-    if (!result) result = CFSTR("");
+    if (!result) result = CFStringCreateCopy(kCFAllocatorSystemDefault, CFSTR(""));
     
     return ( result );
 }
@@ -1049,7 +1054,7 @@ CF_EXPORT CFArrayRef _CFURLComponentsCopyQueryItems(CFURLComponentsRef component
                             }
                         }
                         else {
-                            nameString = CFSTR("");
+                            nameString = (CFStringRef)CFRetain(CFSTR(""));
                         }
                         nameRange.location = kCFNotFound;
                         valueRange.location = idx + 1;
@@ -1071,7 +1076,7 @@ CF_EXPORT CFArrayRef _CFURLComponentsCopyQueryItems(CFURLComponentsRef component
                             }
                         }
                         else {
-                            valueString = CFSTR("");
+                            valueString = (CFStringRef)CFRetain(CFSTR(""));
                         }
                         CFStringRef name = CFSTR("name");
                         CFTypeRef keys[] = {name, CFSTR("value")};
@@ -1096,7 +1101,7 @@ CF_EXPORT CFArrayRef _CFURLComponentsCopyQueryItems(CFURLComponentsRef component
                             }
                         }
                         else {
-                            nameString =  CFSTR("");
+                            nameString =  (CFStringRef)CFRetain(CFSTR(""));
                         }
                         CFStringRef name = CFSTR("name");
                         CFTypeRef keys[] = {name};
@@ -1126,7 +1131,7 @@ CF_EXPORT CFArrayRef _CFURLComponentsCopyQueryItems(CFURLComponentsRef component
                     }
                 }
                 else {
-                    valueString = CFSTR("");
+                    valueString = (CFStringRef)CFRetain(CFSTR(""));
                 }
                 CFStringRef name = CFSTR("name");
                 CFTypeRef keys[] = {name, CFSTR("value")};
@@ -1135,6 +1140,7 @@ CF_EXPORT CFArrayRef _CFURLComponentsCopyQueryItems(CFURLComponentsRef component
                 CFArrayAppendValue(intermediateResult, entry);
                 CFRelease(entry);
                 CFRelease(nameString);
+                CFRelease(valueString);
             }
             else {
                 // at end of query while parsing the name string
@@ -1149,7 +1155,7 @@ CF_EXPORT CFArrayRef _CFURLComponentsCopyQueryItems(CFURLComponentsRef component
                     }
                 }
                 else {
-                    nameString =  CFSTR("");
+                    nameString =  (CFStringRef)CFRetain(CFSTR(""));
                 }
                 CFStringRef name = CFSTR("name");
                 CFTypeRef keys[] = {name};

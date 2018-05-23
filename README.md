@@ -14,6 +14,7 @@ Modified to work (more or less) when installed in a PureDarwin image.
 * Adds an implementation of `CFFileDescriptor`
 * Fixes issues with `CFMachPort` (ie. the fact the actual mach code was missing)
 * Adds implementation of local, remote and Darwin notification centers
+* Restored the Objective-C bridge
 
 #### Dependencies
 
@@ -25,6 +26,8 @@ Create a folder called "include" at the same level as this README.md (and the Co
 
 * the `/usr/local/include/unicode` folder from your macOS system
 * the `mach-o` folder from the dyld Darwin root
+* the `include` folder from `libxml2`
+* `bootstrap_priv.h`
 
 #### TODO
 

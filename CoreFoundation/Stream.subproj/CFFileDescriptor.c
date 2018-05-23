@@ -173,7 +173,7 @@ __private_extern__ void __CFFileDescriptorInitialize(void) {
 
 // use the base reserved bits for storage (like CFMachPort does)
 Boolean __CFFDIsValid(CFFileDescriptorRef f) { 
-	return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)f)->_cfinfo[CF_INFO_BITS], 0, 0); 
+    return (Boolean)__CFRuntimeGetValue(f, 0, 0);
 }
 
 #pragma mark - Public
@@ -211,9 +211,9 @@ CFFileDescriptorRef	CFFileDescriptorCreate(CFAllocatorRef allocator, CFFileDescr
     memory->write_source = NULL;
     memory->lock = CFLockInit;
 	
-	__CFBitfieldSetValue(((CFRuntimeBase *)memory)->_cfinfo[CF_INFO_BITS], 0, 0, 1); // valid
-	__CFBitfieldSetValue(((CFRuntimeBase *)memory)->_cfinfo[CF_INFO_BITS], 1, 1, closeOnInvalidate); 
-
+    __CFRuntimeSetValue(memory, 0, 0, 1);
+    __CFRuntimeSetValue(memory, 1, 1, closeOnInvalidate);
+    
 	return memory;
 }
 
@@ -283,7 +283,7 @@ void CFFileDescriptorInvalidate(CFFileDescriptorRef f)
 	
     __CFLock(&f->lock);
 
-	__CFBitfieldSetValue(((CFRuntimeBase *)f)->_cfinfo[CF_INFO_BITS], 0, 0, 0); // invalidate flag
+    __CFRuntimeSetValue(f, 0, 0, 0);
 
     __CFFDRemoveSource(f, kCFFileDescriptorReadCallBack);
     __CFFDRemoveSource(f, kCFFileDescriptorWriteCallBack);
@@ -293,8 +293,9 @@ void CFFileDescriptorInvalidate(CFFileDescriptorRef f)
 		f->rls = NULL;
 	}
 	
-	if ( __CFBitfieldGetValue(((const CFRuntimeBase *)f)->_cfinfo[CF_INFO_BITS], 1, 1) ) // close fd on invalidate
+    if (__CFRuntimeGetValue(f, 1, 1)) { // close fd on invalidate
 		close(f->fd);
+    }
 	
     __CFUnlock(&f->lock);
 }

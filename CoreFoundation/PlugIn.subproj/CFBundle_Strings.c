@@ -1,7 +1,7 @@
 /*      CFBundle_Strings.c
-	Copyright (c) 1999-2016, Apple Inc. and the Swift project authors
+	Copyright (c) 1999-2017, Apple Inc. and the Swift project authors
  
-	Portions Copyright (c) 2014-2016 Apple Inc. and the Swift project authors
+	Portions Copyright (c) 2014-2017, Apple Inc. and the Swift project authors
 	Licensed under Apache License v2.0 with Runtime Library Exception
 	See http://swift.org/LICENSE.txt for license information
 	See http://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
@@ -72,15 +72,11 @@ static CFStringRef _copyStringFromTable(CFBundleRef bundle, CFStringRef tableNam
             CFRelease(tableData);
             
             if (stringsTable && CFDictionaryGetTypeID() != CFGetTypeID(stringsTable)) {
-                #ifndef _PUREDARWIN
-                    os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .strings file: %@ / %@: Top-level object was not a dictionary", bundle, tableName);
-                #endif /* _PUREDARWIN */
+                os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .strings file: %@ / %@: Top-level object was not a dictionary", bundle, tableName);
                 CFRelease(stringsTable);
                 stringsTable = NULL;
             } else if (!stringsTable && error) {
-                #ifndef _PUREDARWIN
-                    os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .strings file: %@ / %@: %@", bundle, tableName, error);
-                #endif /* _PUREDARWIN */
+                os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .strings file: %@ / %@: %@", bundle, tableName, error);
                 CFRelease(error);
                 error = NULL;
             }
@@ -97,15 +93,11 @@ static CFStringRef _copyStringFromTable(CFBundleRef bundle, CFStringRef tableNam
             CFRelease(tableData);
             
             if (stringsDictTable && CFDictionaryGetTypeID() != CFGetTypeID(stringsDictTable)) {
-                #ifndef _PUREDARWIN
-                    os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .stringsdict file: %@ / %@: Top-level object was not a dictionary", bundle, tableName);
-                #endif /* _PUREDARWIN */
+                os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .stringsdict file: %@ / %@: Top-level object was not a dictionary", bundle, tableName);
                 CFRelease(stringsDictTable);
                 stringsDictTable = NULL;
             } else if (!stringsDictTable && error) {
-                #ifndef _PUREDARWIN
-                    os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .stringsdict file: %@ / %@: %@", bundle, tableName, error);
-                #endif /* _PUREDARWIN */
+                os_log_error(_CFBundleLocalizedStringLogger(), "Unable to load .stringsdict file: %@ / %@: %@", bundle, tableName, error);
                 CFRelease(error);
                 error = NULL;
             }
@@ -134,9 +126,7 @@ static CFStringRef _copyStringFromTable(CFBundleRef bundle, CFStringRef tableNam
     
     // Last resort: create an empty table
     if (!stringsTable) {
-        #ifndef _PUREDARWIN
-            os_log_debug(_CFBundleLocalizedStringLogger(), "Hit last resort and creating empty strings table");
-        #endif /* _PUREDARWIN */
+        os_log_debug(_CFBundleLocalizedStringLogger(), "Hit last resort and creating empty strings table");
         stringsTable = CFDictionaryCreate(CFGetAllocator(bundle), NULL, NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }
     
@@ -186,17 +176,13 @@ CF_EXPORT CFStringRef CFBundleCopyLocalizedStringForLocalization(CFBundleRef bun
         static Boolean capitalize = false;
         if (capitalize) {
             CFMutableStringRef capitalizedResult = CFStringCreateMutableCopy(kCFAllocatorSystemDefault, 0, result);
-            #ifndef _PUREDARWIN
-                os_log_error(_CFBundleLocalizedStringLogger(), "ERROR: %@ not found in table %@ of bundle %@", key, tableName, bundle);
-            #endif /* _PUREDARWIN */
+            os_log_error(_CFBundleLocalizedStringLogger(), "ERROR: %@ not found in table %@ of bundle %@", key, tableName, bundle);
             CFStringUppercase(capitalizedResult, NULL);
             CFRelease(result);
             result = capitalizedResult;
         }
     }
-    #ifndef _PUREDARWIN
-        os_log_debug(_CFBundleLocalizedStringLogger(), "Bundle: %{private}@, key: %{public}@, value: %{public}@, table: %{public}@, localizationName: %{public}@, result: %{public}@", bundle, key, value, tableName, localizationName, result);
-    #endif /* _PUREDARWIN */
+    os_log_debug(_CFBundleLocalizedStringLogger(), "Bundle: %{private}@, key: %{public}@, value: %{public}@, table: %{public}@, localizationName: %{public}@, result: %{public}@", bundle, key, value, tableName, localizationName, result);
     return result;
 }
 

@@ -1,14 +1,14 @@
 /*	CFBase.h
-	Copyright (c) 1998-2016, Apple Inc. and the Swift project authors
+	Copyright (c) 1998-2017, Apple Inc. and the Swift project authors
  
-	Portions Copyright (c) 2014-2016 Apple Inc. and the Swift project authors
+	Portions Copyright (c) 2014-2017, Apple Inc. and the Swift project authors
 	Licensed under Apache License v2.0 with Runtime Library Exception
 	See http://swift.org/LICENSE.txt for license information
 	See http://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
 */
 
 #if !defined(__COREFOUNDATION_CFBASE__)
-#define __COREFOUNDATION_CFBASE__ 0
+#define __COREFOUNDATION_CFBASE__ 1
 
 #if DEPLOYMENT_RUNTIME_SWIFT
 #include <CoreFoundation/TargetConditionals.h>
@@ -68,7 +68,7 @@
 #include <stdbool.h>
 #endif
 
-#if __BLOCKS__
+#if __BLOCKS__ && ((TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE)) || (TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
 #include <Block.h>
 #endif
 
@@ -139,11 +139,9 @@
         #endif
     #endif
 #else
-    #if defined(__cplusplus)
-        #define CF_EXPORT extern "C"
-    #else
-        #define CF_EXPORT extern
-    #endif
+
+#define CF_EXPORT extern
+
 #endif
 
 CF_EXTERN_C_BEGIN
@@ -658,7 +656,7 @@ void CFRelease(CFTypeRef cf);
 #if DEPLOYMENT_RUNTIME_SWIFT
 #else
 CF_EXPORT
-CFTypeRef CFAutorelease(CFTypeRef CF_RELEASES_ARGUMENT arg) CF_AVAILABLE(10_9, 7_0);
+CFTypeRef CFAutorelease(CFTypeRef CF_RELEASES_ARGUMENT arg) API_AVAILABLE(macos(10.9), ios(7.0), watchos(2.0), tvos(9.0));
 
 CF_EXPORT
 CFIndex CFGetRetainCount(CFTypeRef cf);
@@ -685,8 +683,7 @@ CFTypeRef CFMakeCollectable(CFTypeRef cf) CF_AUTOMATED_REFCOUNT_UNAVAILABLE;
 #if DEPLOYMENT_RUNTIME_SWIFT
 
 #define _CF_SWIFT_RC_PINNED_FLAG 0x1
-#define _CF_SWIFT_RC_FLAGS_COUNT 2
-#define _CF_CONSTANT_OBJECT_STRONG_RC ((1 << _CF_SWIFT_RC_FLAGS_COUNT) | _CF_SWIFT_RC_PINNED_FLAG)
+#define _CF_CONSTANT_OBJECT_STRONG_RC (_CF_SWIFT_RC_PINNED_FLAG)
 
 #endif
 

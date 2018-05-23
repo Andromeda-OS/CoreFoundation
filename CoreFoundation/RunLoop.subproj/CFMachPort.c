@@ -1,7 +1,7 @@
 /*	CFMachPort.c
-	Copyright (c) 1998-2016, Apple Inc. and the Swift project authors
+	Copyright (c) 1998-2017, Apple Inc. and the Swift project authors
  
-	Portions Copyright (c) 2014-2016 Apple Inc. and the Swift project authors
+	Portions Copyright (c) 2014-2017, Apple Inc. and the Swift project authors
 	Licensed under Apache License v2.0 with Runtime Library Exception
 	See http://swift.org/LICENSE.txt for license information
 	See http://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include "CFInternal.h"
 #include <os/lock.h>
-#include <os/log.h>
+
 
 // This queue is used for the cancel/event handler for dead name notification.
 static dispatch_queue_t _CFMachPortQueue() {
@@ -93,14 +93,14 @@ CF_BREAKPOINT_FUNCTION(void _CFMachPortDeallocationFailure(void));
 void _cfmp_log_failure(const char *const msg, _cfmp_deallocation_record *pr) {
     if (pr) {
         const _cfmp_deallocation_record R = *pr;
-        #ifndef _PUREDARWIN
+#if 0 // _sjc_
             os_log(OS_LOG_DEFAULT, "*** %{public}s break on '_CFMachPortDeallocationFailure' to debug: {p:%{private}d,s:%d,r:%d,i:%d}", msg, R.port, R.doSend, R.doReceive, R.invalidated);
-        #endif /* _PUREDARWIN */
+#endif
     }
     else {
-        #ifndef _PUREDARWIN
+#if 0 // _sjc_
             os_log(OS_LOG_DEFAULT, "*** %{public}s break on  '_CFMachPortDeallocationFailure' to debug: {null}", msg);
-        #endif /* _PUREDARWIN */
+#endif
     }
     _CFMachPortDeallocationFailure();
 }
@@ -221,19 +221,19 @@ struct __CFMachPort {
 /* Bit 2 in the base reserved bits is used for has-send-ref state */
 
 CF_INLINE Boolean __CFMachPortHasReceive(CFMachPortRef mp) {
-    return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)mp)->_cfinfo[CF_INFO_BITS], 1, 1);
+    return __CFRuntimeGetFlag(mp, 1);
 }
 
 CF_INLINE void __CFMachPortSetHasReceive(CFMachPortRef mp) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)mp)->_cfinfo[CF_INFO_BITS], 1, 1, 1);
+    __CFRuntimeSetFlag(mp, 1, true);
 }
 
 CF_INLINE Boolean __CFMachPortHasSend(CFMachPortRef mp) {
-    return (Boolean)__CFBitfieldGetValue(((const CFRuntimeBase *)mp)->_cfinfo[CF_INFO_BITS], 2, 2);
+    return __CFRuntimeGetFlag(mp, 2);
 }
 
 CF_INLINE void __CFMachPortSetHasSend(CFMachPortRef mp) {
-    __CFBitfieldSetValue(((CFRuntimeBase *)mp)->_cfinfo[CF_INFO_BITS], 2, 2, 1);
+    __CFRuntimeSetFlag(mp, 2, true);
 }
 
 CF_INLINE Boolean __CFMachPortIsValid(CFMachPortRef mp) {
@@ -587,8 +587,9 @@ Boolean CFMachPortIsValid(CFMachPortRef mp) {
     __CFGenericValidateType(mp, CFMachPortGetTypeID());
     if (!__CFMachPortIsValid(mp)) return false;
     mach_port_type_t type = 0;
+    MACH_PORT_TYPE_PORT_RIGHTS;
     kern_return_t ret = mach_port_type(mach_task_self(), mp->_port, &type);
-    if (KERN_SUCCESS != ret || (type & ~(MACH_PORT_TYPE_SEND|MACH_PORT_TYPE_SEND_ONCE|MACH_PORT_TYPE_RECEIVE|MACH_PORT_TYPE_DNREQUEST))) {
+    if (KERN_SUCCESS != ret || (0 == (type & MACH_PORT_TYPE_PORT_RIGHTS))) {
 	return false;
     }
     return true;
