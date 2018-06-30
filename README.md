@@ -15,6 +15,7 @@ Modified to work (more or less) when installed in a PureDarwin image.
 * Fixes issues with `CFMachPort` (ie. the fact the actual mach code was missing)
 * Adds implementation of local, remote and Darwin notification centers
 * Restored the Objective-C bridge
+* Implemented (at least stubs of) Objective-C classes which are required to be found in CF
 
 #### Dependencies
 
@@ -32,7 +33,9 @@ Create a folder called "include" at the same level as this README.md (and the Co
 #### TODO
 
 * Either write a script to set up the dependencies needed for building, or switch to using the Darwin SDK
-* Integrate recent changes from the swift corelibs project
+* Keep up to date with recent changes from the swift corelibs project
+* Add implementation of classes from [swift-corelibs-foundation](https://github.com/apple/swift-corelibs-foundation)
+* Complete implementation of all bridged classes
 
 #### Known Issues
 
