@@ -7,6 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1770772E20D67F78005CF65D /* NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770772D20D67F78005CF65D /* NSArray.m */; };
+		1770773020D68069005CF65D /* NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770772F20D68069005CF65D /* NSObject.m */; };
+		1770773220D68155005CF65D /* NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773120D68155005CF65D /* NSNull.m */; };
+		1770773420D686E2005CF65D /* NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773320D686E2005CF65D /* NSDictionary.m */; };
+		1770773620D68A3D005CF65D /* NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773520D68A3D005CF65D /* NSData.m */; };
+		1770773820D68BBB005CF65D /* NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773720D68BBB005CF65D /* NSDate.m */; };
+		1770773A20D68D76005CF65D /* NSTimeZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773920D68D76005CF65D /* NSTimeZone.m */; };
+		1770773C20D68E83005CF65D /* NSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773B20D68E83005CF65D /* NSTimer.m */; };
+		1770773E20D68F22005CF65D /* NSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773D20D68F22005CF65D /* NSCalendar.m */; };
+		1770774020D69149005CF65D /* NSLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770773F20D69148005CF65D /* NSLocale.m */; };
+		1770774220D69308005CF65D /* NSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774120D69308005CF65D /* NSURL.m */; };
+		1770774420D6972D005CF65D /* NSSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774320D6972D005CF65D /* NSSet.m */; };
+		1770774620D699DF005CF65D /* NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774520D699DF005CF65D /* NSString.m */; };
+		1770774820D6AB17005CF65D /* NSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774720D6AB17005CF65D /* NSAttributedString.m */; };
+		1770774A20D6AB91005CF65D /* NSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774920D6AB91005CF65D /* NSError.m */; };
+		1770774C20D6AC15005CF65D /* NSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774B20D6AC15005CF65D /* NSNumber.m */; };
+		1770774E20D6AD3F005CF65D /* NSCharacterSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774D20D6AD3F005CF65D /* NSCharacterSet.m */; };
+		1770775020D6B0E2005CF65D /* NSRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770774F20D6B0E2005CF65D /* NSRunLoop.m */; };
+		1770775220D6B187005CF65D /* NSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775120D6B187005CF65D /* NSStream.m */; };
+		1770775420D6B30C005CF65D /* NSCFType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775320D6B30C005CF65D /* NSCFType.m */; };
+		1770775620D6B35D005CF65D /* NSOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775520D6B35D005CF65D /* NSOrderedSet.m */; };
+		1770775820D6B574005CF65D /* NSDateComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775720D6B574005CF65D /* NSDateComponents.m */; };
+		1770775A20D6B5F3005CF65D /* NSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775920D6B5F3005CF65D /* NSCache.m */; };
+		1770775C20D6B693005CF65D /* NSEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775B20D6B693005CF65D /* NSEnumerator.m */; };
+		1770775E20D6B88C005CF65D /* NSException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775D20D6B88C005CF65D /* NSException.m */; };
+		1770776020D6B99A005CF65D /* NSInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770775F20D6B99A005CF65D /* NSInvocation.m */; };
+		1770776220D6BADC005CF65D /* NSMethodSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770776120D6BADC005CF65D /* NSMethodSignature.m */; };
+		1770776420D6BB51005CF65D /* NSFileSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770776320D6BB51005CF65D /* NSFileSecurity.m */; };
+		1770776620D6BDA8005CF65D /* NSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770776520D6BDA8005CF65D /* NSUserDefaults.m */; };
+		1770776820D6BE4B005CF65D /* NSBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770776720D6BE4B005CF65D /* NSBlock.m */; };
+		1770776D20D6FB15005CF65D /* PureFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770776B20D6FB14005CF65D /* PureFoundation.m */; };
+		1770776E20D6FB15005CF65D /* PureFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770776C20D6FB15005CF65D /* PureFoundation.h */; };
+		1770777120D6FFD8005CF65D /* FileLoaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770776F20D6FFD8005CF65D /* FileLoaders.h */; };
+		1770777220D6FFD8005CF65D /* FileLoaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1770777020D6FFD8005CF65D /* FileLoaders.m */; };
 		1770B6C9205EBF2000AE51C9 /* CFFileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */; };
 		1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */; };
 		1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */ = {isa = PBXBuildFile; fileRef = 1770B7252064486D00AE51C9 /* CFNotificationCenter.c */; };
@@ -194,6 +228,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1770772B20D67E77005CF65D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1770772D20D67F78005CF65D /* NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSArray.m; sourceTree = "<group>"; };
+		1770772F20D68069005CF65D /* NSObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject.m; sourceTree = "<group>"; };
+		1770773120D68155005CF65D /* NSNull.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNull.m; sourceTree = "<group>"; };
+		1770773320D686E2005CF65D /* NSDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionary.m; sourceTree = "<group>"; };
+		1770773520D68A3D005CF65D /* NSData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSData.m; sourceTree = "<group>"; };
+		1770773720D68BBB005CF65D /* NSDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDate.m; sourceTree = "<group>"; };
+		1770773920D68D76005CF65D /* NSTimeZone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTimeZone.m; sourceTree = "<group>"; };
+		1770773B20D68E83005CF65D /* NSTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSTimer.m; sourceTree = "<group>"; };
+		1770773D20D68F22005CF65D /* NSCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCalendar.m; sourceTree = "<group>"; };
+		1770773F20D69148005CF65D /* NSLocale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLocale.m; sourceTree = "<group>"; };
+		1770774120D69308005CF65D /* NSURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURL.m; sourceTree = "<group>"; };
+		1770774320D6972D005CF65D /* NSSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSet.m; sourceTree = "<group>"; };
+		1770774520D699DF005CF65D /* NSString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSString.m; sourceTree = "<group>"; };
+		1770774720D6AB17005CF65D /* NSAttributedString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedString.m; sourceTree = "<group>"; };
+		1770774920D6AB91005CF65D /* NSError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSError.m; sourceTree = "<group>"; };
+		1770774B20D6AC15005CF65D /* NSNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNumber.m; sourceTree = "<group>"; };
+		1770774D20D6AD3F005CF65D /* NSCharacterSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet.m; sourceTree = "<group>"; };
+		1770774F20D6B0E2005CF65D /* NSRunLoop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRunLoop.m; sourceTree = "<group>"; };
+		1770775120D6B187005CF65D /* NSStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStream.m; sourceTree = "<group>"; };
+		1770775320D6B30C005CF65D /* NSCFType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCFType.m; sourceTree = "<group>"; };
+		1770775520D6B35D005CF65D /* NSOrderedSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOrderedSet.m; sourceTree = "<group>"; };
+		1770775720D6B574005CF65D /* NSDateComponents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDateComponents.m; sourceTree = "<group>"; };
+		1770775920D6B5F3005CF65D /* NSCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCache.m; sourceTree = "<group>"; };
+		1770775B20D6B693005CF65D /* NSEnumerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSEnumerator.m; sourceTree = "<group>"; };
+		1770775D20D6B88C005CF65D /* NSException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSException.m; sourceTree = "<group>"; };
+		1770775F20D6B99A005CF65D /* NSInvocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSInvocation.m; sourceTree = "<group>"; };
+		1770776120D6BADC005CF65D /* NSMethodSignature.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMethodSignature.m; sourceTree = "<group>"; };
+		1770776320D6BB51005CF65D /* NSFileSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFileSecurity.m; sourceTree = "<group>"; };
+		1770776520D6BDA8005CF65D /* NSUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaults.m; sourceTree = "<group>"; };
+		1770776720D6BE4B005CF65D /* NSBlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSBlock.m; sourceTree = "<group>"; };
+		1770776920D6C8C9005CF65D /* cf-objc.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "cf-objc.txt"; sourceTree = "<group>"; };
+		1770776B20D6FB14005CF65D /* PureFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureFoundation.m; sourceTree = "<group>"; };
+		1770776C20D6FB15005CF65D /* PureFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureFoundation.h; sourceTree = "<group>"; };
+		1770776F20D6FFD8005CF65D /* FileLoaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoaders.h; sourceTree = "<group>"; };
+		1770777020D6FFD8005CF65D /* FileLoaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileLoaders.m; sourceTree = "<group>"; };
 		1770B6C7205EBF1F00AE51C9 /* CFFileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFileDescriptor.h; sourceTree = "<group>"; };
 		1770B6C8205EBF2000AE51C9 /* CFFileDescriptor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFFileDescriptor.c; sourceTree = "<group>"; };
 		1770B7252064486D00AE51C9 /* CFNotificationCenter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFNotificationCenter.c; sourceTree = "<group>"; };
@@ -407,6 +477,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1770772A20D67B1E005CF65D /* PureFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				1770772B20D67E77005CF65D /* README.md */,
+				1770776920D6C8C9005CF65D /* cf-objc.txt */,
+				1770776C20D6FB15005CF65D /* PureFoundation.h */,
+				1770776B20D6FB14005CF65D /* PureFoundation.m */,
+				1770776F20D6FFD8005CF65D /* FileLoaders.h */,
+				1770777020D6FFD8005CF65D /* FileLoaders.m */,
+				1770772F20D68069005CF65D /* NSObject.m */,
+				1770775320D6B30C005CF65D /* NSCFType.m */,
+				1770772D20D67F78005CF65D /* NSArray.m */,
+				1770773320D686E2005CF65D /* NSDictionary.m */,
+				1770773520D68A3D005CF65D /* NSData.m */,
+				1770773720D68BBB005CF65D /* NSDate.m */,
+				1770773920D68D76005CF65D /* NSTimeZone.m */,
+				1770773B20D68E83005CF65D /* NSTimer.m */,
+				1770773120D68155005CF65D /* NSNull.m */,
+				1770773D20D68F22005CF65D /* NSCalendar.m */,
+				1770773F20D69148005CF65D /* NSLocale.m */,
+				1770774120D69308005CF65D /* NSURL.m */,
+				1770774320D6972D005CF65D /* NSSet.m */,
+				1770774520D699DF005CF65D /* NSString.m */,
+				1770774720D6AB17005CF65D /* NSAttributedString.m */,
+				1770774920D6AB91005CF65D /* NSError.m */,
+				1770774B20D6AC15005CF65D /* NSNumber.m */,
+				1770774D20D6AD3F005CF65D /* NSCharacterSet.m */,
+				1770774F20D6B0E2005CF65D /* NSRunLoop.m */,
+				1770775120D6B187005CF65D /* NSStream.m */,
+				1770775520D6B35D005CF65D /* NSOrderedSet.m */,
+				1770775720D6B574005CF65D /* NSDateComponents.m */,
+				1770775920D6B5F3005CF65D /* NSCache.m */,
+				1770775B20D6B693005CF65D /* NSEnumerator.m */,
+				1770775D20D6B88C005CF65D /* NSException.m */,
+				1770775F20D6B99A005CF65D /* NSInvocation.m */,
+				1770776120D6BADC005CF65D /* NSMethodSignature.m */,
+				1770776320D6BB51005CF65D /* NSFileSecurity.m */,
+				1770776520D6BDA8005CF65D /* NSUserDefaults.m */,
+				1770776720D6BE4B005CF65D /* NSBlock.m */,
+			);
+			path = PureFoundation;
+			sourceTree = "<group>";
+		};
 		17AC89A52066E5BA008FB2ED /* Foundation.subproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +535,7 @@
 		3920B0021E3DAABF00BDE669 = {
 			isa = PBXGroup;
 			children = (
+				1770772A20D67B1E005CF65D /* PureFoundation */,
 				3920B0801E3DB05700BDE669 /* AppServices.subproj */,
 				3920B0841E3DB05700BDE669 /* Base.subproj */,
 				3920B09E1E3DB05700BDE669 /* CharacterSets */,
@@ -801,6 +915,7 @@
 				3920B1781E3DB15D00BDE669 /* CFPreferences.h in Headers */,
 				3920B18D1E3DB1AD00BDE669 /* CFStringEncodingConverterExt.h in Headers */,
 				3920B18F1E3DB1B300BDE669 /* CFStringEncodingDatabase.h in Headers */,
+				1770777120D6FFD8005CF65D /* FileLoaders.h in Headers */,
 				3920B1901E3DB1BC00BDE669 /* CFUniChar.h in Headers */,
 				3920B17E1E3DB17C00BDE669 /* CFStreamAbstract.h in Headers */,
 				3920B1811E3DB18800BDE669 /* CFAttributedString.h in Headers */,
@@ -825,6 +940,7 @@
 				17A1471D20B49E4E00653CAF /* CFPropertyList_Private.h in Headers */,
 				3920B16F1E3DB13900BDE669 /* CFXMLNode.h in Headers */,
 				3920B1701E3DB13900BDE669 /* CFXMLParser.h in Headers */,
+				1770776E20D6FB15005CF65D /* PureFoundation.h in Headers */,
 				3920B16B1E3DB12200BDE669 /* CFTimeZone.h in Headers */,
 				3920B15F1E3DB10F00BDE669 /* CFCalendar.h in Headers */,
 				3920B1601E3DB10F00BDE669 /* CFDateFormatter.h in Headers */,
@@ -952,14 +1068,20 @@
 				3920B19C1E3DB4B000BDE669 /* CFBase.c in Sources */,
 				3920B19D1E3DB4B500BDE669 /* CFFileUtilities.c in Sources */,
 				3920B19E1E3DB4B900BDE669 /* CFPlatform.c in Sources */,
+				1770774820D6AB17005CF65D /* NSAttributedString.m in Sources */,
+				1770774420D6972D005CF65D /* NSSet.m in Sources */,
 				3920B1A11E3DB4EB00BDE669 /* CFSystemDirectories.c in Sources */,
 				3920B19B1E3DB4A800BDE669 /* CFUserNotification.c in Sources */,
 				3920B1A51E3DB51000BDE669 /* CFArray.c in Sources */,
+				1770776820D6BE4B005CF65D /* NSBlock.m in Sources */,
+				1770772E20D67F78005CF65D /* NSArray.m in Sources */,
 				3920B1A61E3DB51900BDE669 /* CFBag.c in Sources */,
+				1770776620D6BDA8005CF65D /* NSUserDefaults.m in Sources */,
 				3920B1A71E3DB51B00BDE669 /* CFBasicHash.c in Sources */,
 				3920B1B11E3DB54000BDE669 /* CFCalendar.c in Sources */,
 				3920B1B01E3DB53400BDE669 /* CFError.c in Sources */,
 				3920B1D41E3DB5AA00BDE669 /* CFConcreteStreams.c in Sources */,
+				1770773A20D68D76005CF65D /* NSTimeZone.m in Sources */,
 				3920B1CD1E3DB59200BDE669 /* CFApplicationPreferences.c in Sources */,
 				3920B1CF1E3DB59500BDE669 /* CFXMLPreferencesDomain.c in Sources */,
 				3920B1CE1E3DB59400BDE669 /* CFPreferences.c in Sources */,
@@ -973,17 +1095,26 @@
 				3920B1EF1E3DB5FF00BDE669 /* CFURLComponents_URIParser.c in Sources */,
 				3920B1E81E3DB5E600BDE669 /* CFStringEncodingDatabase.c in Sources */,
 				3920B1EC1E3DB5F600BDE669 /* CFURL.c in Sources */,
+				1770773C20D68E83005CF65D /* NSTimer.m in Sources */,
 				3920B1E71E3DB5E400BDE669 /* CFStringEncodingConverter.c in Sources */,
+				1770774A20D6AB91005CF65D /* NSError.m in Sources */,
 				3920B1E91E3DB5EC00BDE669 /* CFUniChar.c in Sources */,
 				17A1472520B4A5C600653CAF /* CFBundle_ResourceFork.c in Sources */,
+				1770775E20D6B88C005CF65D /* NSException.m in Sources */,
 				3920B1EA1E3DB5EE00BDE669 /* CFUnicodeDecomposition.c in Sources */,
 				3920B1D51E3DB5AC00BDE669 /* CFSocketStream.c in Sources */,
+				1770776D20D6FB15005CF65D /* PureFoundation.m in Sources */,
+				1770776020D6B99A005CF65D /* NSInvocation.m in Sources */,
 				3920B1D81E3DB5B900BDE669 /* CFBurstTrie.c in Sources */,
+				1770775C20D6B693005CF65D /* NSEnumerator.m in Sources */,
+				1770777220D6FFD8005CF65D /* FileLoaders.m in Sources */,
 				3920B1D91E3DB5BB00BDE669 /* CFCharacterSet.c in Sources */,
+				1770773220D68155005CF65D /* NSNull.m in Sources */,
 				17A1472120B4A59500653CAF /* CFBundle_Executable.c in Sources */,
 				17AC89BB20683B18008FB2ED /* FoundationFunctions.c in Sources */,
 				3920B1EB1E3DB5EF00BDE669 /* CFUnicodePrecomposition.c in Sources */,
 				3920B1DA1E3DB5BD00BDE669 /* CFCharacterSetData.S in Sources */,
+				1770775820D6B574005CF65D /* NSDateComponents.m in Sources */,
 				3920B1DB1E3DB5BF00BDE669 /* CFRegularExpression.c in Sources */,
 				17A1471F20B4A58400653CAF /* CFBundle_DebugStrings.c in Sources */,
 				3920B1D31E3DB5A200BDE669 /* CFSocket.c in Sources */,
@@ -996,7 +1127,9 @@
 				3920B1E21E3DB5CE00BDE669 /* CFUniCharPropertyDatabase.S in Sources */,
 				17A1472320B4A5B700653CAF /* CFBundle_Main.c in Sources */,
 				3920B1E01E3DB5CA00BDE669 /* CFStringTransform.c in Sources */,
+				1770775020D6B0E2005CF65D /* NSRunLoop.m in Sources */,
 				3920B1D11E3DB59E00BDE669 /* CFMessagePort.c in Sources */,
+				1770773820D68BBB005CF65D /* NSDate.m in Sources */,
 				3920B1DC1E3DB5C200BDE669 /* CFRunArray.c in Sources */,
 				3920B19F1E3DB4C100BDE669 /* CFRuntime.c in Sources */,
 				3920B1D01E3DB59C00BDE669 /* CFMachPort.c in Sources */,
@@ -1006,24 +1139,32 @@
 				3920B1C31E3DB57700BDE669 /* CFBundle_Binary.c in Sources */,
 				3920B1C21E3DB57400BDE669 /* CFBundle.c in Sources */,
 				3920B1C71E3DB58000BDE669 /* CFBundle_Resources.c in Sources */,
+				1770774020D69149005CF65D /* NSLocale.m in Sources */,
 				3920B1C61E3DB57E00BDE669 /* CFBundle_Locale.c in Sources */,
 				3920B1A91E3DB51F00BDE669 /* CFBinaryHeap.c in Sources */,
 				3920B1C91E3DB58500BDE669 /* CFPlugIn.c in Sources */,
+				1770774220D69308005CF65D /* NSURL.m in Sources */,
 				3920B1B31E3DB54400BDE669 /* CFLocale.c in Sources */,
 				17A1471A20B4993E00653CAF /* CFKnownLocations.c in Sources */,
 				3920B1C81E3DB58300BDE669 /* CFBundle_Strings.c in Sources */,
 				3920B1CC1E3DB58C00BDE669 /* CFPlugIn_PlugIn.c in Sources */,
 				1770B7262064486D00AE51C9 /* CFNotificationCenter.c in Sources */,
+				1770775A20D6B5F3005CF65D /* NSCache.m in Sources */,
 				3920B1CA1E3DB58600BDE669 /* CFPlugIn_Factory.c in Sources */,
+				1770774620D699DF005CF65D /* NSString.m in Sources */,
 				3920B1CB1E3DB58900BDE669 /* CFPlugIn_Instance.c in Sources */,
 				3920B1BF1E3DB56A00BDE669 /* CFXMLNode.c in Sources */,
+				1770775620D6B35D005CF65D /* NSOrderedSet.m in Sources */,
 				3920B1C11E3DB56E00BDE669 /* CFXMLTree.c in Sources */,
 				3920B1BA1E3DB56000BDE669 /* CFBinaryPList.c in Sources */,
+				1770775220D6B187005CF65D /* NSStream.m in Sources */,
+				1770775420D6B30C005CF65D /* NSCFType.m in Sources */,
 				3920B1C01E3DB56C00BDE669 /* CFXMLParser.c in Sources */,
 				3920B1BD1E3DB56500BDE669 /* CFXMLInputStream.c in Sources */,
 				3920B1BB1E3DB56100BDE669 /* CFOldStylePList.c in Sources */,
 				17A1472720B4A5E100653CAF /* CFBundle_Tables.c in Sources */,
 				3920B1B21E3DB54100BDE669 /* CFDateFormatter.c in Sources */,
+				1770776220D6BADC005CF65D /* NSMethodSignature.m in Sources */,
 				AA577E451EBD36E0007D9D42 /* CFLocaleIdentifier.c in Sources */,
 				3920B1B91E3DB55800BDE669 /* CFTimeZone.c in Sources */,
 				3920B1B61E3DB55200BDE669 /* CFBigNumber.c in Sources */,
@@ -1031,16 +1172,23 @@
 				3920B1B81E3DB55600BDE669 /* CFNumber.c in Sources */,
 				3920B1B41E3DB54700BDE669 /* CFLocaleKeys.c in Sources */,
 				3920B1AA1E3DB52200BDE669 /* CFBitVector.c in Sources */,
+				1770773620D68A3D005CF65D /* NSData.m in Sources */,
 				17AC89AB2066F916008FB2ED /* FoundationSymbols.c in Sources */,
 				3920B1B51E3DB54900BDE669 /* CFNumberFormatter.c in Sources */,
+				1770776420D6BB51005CF65D /* NSFileSecurity.m in Sources */,
 				3920B1AC1E3DB52600BDE669 /* CFDictionary.c in Sources */,
 				1770B6CA205EBF2000AE51C9 /* CFFileDescriptor.c in Sources */,
+				1770773420D686E2005CF65D /* NSDictionary.m in Sources */,
 				3920B1AB1E3DB52400BDE669 /* CFData.c in Sources */,
 				3920B1A21E3DB4F200BDE669 /* CFUtilities.c in Sources */,
 				3920B1AD1E3DB52800BDE669 /* CFSet.c in Sources */,
 				3920B1A31E3DB4F800BDE669 /* CFUUID.c in Sources */,
 				3920B1AF1E3DB52E00BDE669 /* CFTree.c in Sources */,
 				3920B1AE1E3DB52C00BDE669 /* CFStorage.c in Sources */,
+				1770774C20D6AC15005CF65D /* NSNumber.m in Sources */,
+				1770773E20D68F22005CF65D /* NSCalendar.m in Sources */,
+				1770774E20D6AD3F005CF65D /* NSCharacterSet.m in Sources */,
+				1770773020D68069005CF65D /* NSObject.m in Sources */,
 				3920B1A01E3DB4E700BDE669 /* CFSortFunctions.c in Sources */,
 				3920B1A41E3DB4FB00BDE669 /* CFWindowsUtilities.c in Sources */,
 			);
@@ -1155,13 +1303,14 @@
 				INSTALL_PATH = /System/Library/Frameworks;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = (
 					"-licucore.A",
 					"-lxml2",
 					"-lobjc",
 					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/Foundation.subproj/FoundationSymbolAliases",
 					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
-					"\n-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
+					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
 					"-Wl,-sectcreate,__UNICODE,__properties,CoreFoundation/CharacterSets/CFUniCharPropertyDatabase.data",
 					"-Wl,-sectcreate,__UNICODE,__data,CoreFoundation/CharacterSets/CFUnicodeData-L.mapping",
 					"-Wl,-segprot,__UNICODE,r,r",
@@ -1200,13 +1349,14 @@
 				INSTALL_PATH = /System/Library/Frameworks;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = (
 					"-licucore.A",
 					"-lxml2",
 					"-lobjc",
 					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/Foundation.subproj/FoundationSymbolAliases",
 					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
-					"\n-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
+					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/CharacterSets/CFCharacterSetBitmaps.bitmap",
 					"-Wl,-sectcreate,__UNICODE,__properties,CoreFoundation/CharacterSets/CFUniCharPropertyDatabase.data",
 					"-Wl,-sectcreate,__UNICODE,__data,CoreFoundation/CharacterSets/CFUnicodeData-L.mapping",
 					"-Wl,-segprot,__UNICODE,r,r",

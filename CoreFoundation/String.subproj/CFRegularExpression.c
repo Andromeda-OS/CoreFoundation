@@ -142,7 +142,7 @@ _CFRegularExpressionRef _CFRegularExpressionCreate(CFAllocatorRef allocator, CFS
             };
             
             CFDictionaryRef userInfo = CFDictionaryCreate(kCFAllocatorSystemDefault, (const void **)keys, (const void **)values, sizeof(keys) / sizeof(keys[0]), &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-            *errorPtr = CFErrorCreate(kCFAllocatorSystemDefault, CFSTR("NSCocoaErrorDomain"), 2048 /* NSFormattingError*/, userInfo);
+            *errorPtr = CFErrorCreate(kCFAllocatorSystemDefault, kCFErrorDomainCocoa, 2048 /* NSFormattingError*/, userInfo);
             CFRelease(userInfo);
         }
         if (freePatternBuffer) free(patternBuffer);
