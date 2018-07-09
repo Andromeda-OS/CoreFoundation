@@ -27,11 +27,14 @@
 }
 
 // Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 // TODO: Check whether numbers are still kept unique by CF
 - (id)copyWithZone:(NSZone *)zone {
@@ -253,11 +256,14 @@
 }
 
 //Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 - (id)copyWithZone:(NSZone *)zone {
     return self; // because these are constants

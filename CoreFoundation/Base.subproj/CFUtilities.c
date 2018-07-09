@@ -617,15 +617,15 @@ static void _CFShowToFile(FILE *file, Boolean flush, const void *obj) {
      bool lastNL = false;
 
      if (obj) {
-	if (CFGetTypeID(obj) == CFStringGetTypeID()) {
-	    // Makes Ali marginally happier
-	    str = __CFCopyFormattingDescription(obj, NULL);
-	    if (!str) str = CFCopyDescription(obj);
-	} else {
-	    str = CFCopyDescription(obj);
-	}
+         if (CFGetTypeID(obj) == CFStringGetTypeID()) {
+             // Makes Ali marginally happier
+             str = __CFCopyFormattingDescription(obj, NULL);
+             if (!str) str = CFCopyDescription(obj);
+         } else {
+             str = CFCopyDescription(obj);
+         }
      } else {
-	str = (CFStringRef)CFRetain(CFSTR("(null)"));
+         str = (CFStringRef)CFRetain(CFSTR("(null)"));
      }
      cnt = CFStringGetLength(str);
 

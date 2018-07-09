@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ForFoundationOnly.h"
 
 // __NSCFError is defined here in CoreFoundation. It is the class which is used to bridge to CFErrorRef.
 // NSError (and NSCFError, whatever that is) are defined in Foundation
@@ -52,10 +53,13 @@ static id PFErrorUserInfoValue(CFErrorRef error, NSString *key) {
 
 // Standard bridged-class over-rides
 - (void)dealloc {} // this is missing [super dealloc] on purpose, XCode
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 - (NSString *)localizedDescription {
     return [(id)CFErrorCopyDescription(SELF) autorelease];

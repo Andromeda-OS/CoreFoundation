@@ -199,6 +199,10 @@ CF_PRIVATE int32_t __CFRuntimeClassTableCount = 0;
 
 CF_PRIVATE uintptr_t __CFRuntimeObjCClassTable[__CFRuntimeClassTableSize] = {0};
 
+// _sjc_ Used to speed lookup of bridged classes
+CF_PRIVATE uintptr_t __CFRuntimeObjCClassList[__CFRuntimeClassTableSize] = {0};
+CF_PRIVATE int32_t __CFRuntimeObjCClassListCount = 0;
+
 #if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE) && __x86_64h__) // Match parity with private header
 // This must be defined because previous linkages may reference this symbol, however for x86_64h builds this should never be anything but NULL
 #undef __CFObjCIsCollectable
@@ -260,9 +264,33 @@ CFTypeID _CFRuntimeRegisterClass(const CFRuntimeClass * const cls) {
     return typeID;
 }
 
+// Add bridged classes to a separate structure for fast lookup
+CF_PRIVATE void _CFRuntimeObjCClassTableInsert(uintptr_t class) {
+    int index = __CFRuntimeObjCClassListCount++;
+    do {
+        if (index == 0 || __CFRuntimeObjCClassList[index-1] > class) {
+            __CFRuntimeObjCClassList[index] = class;
+            index = -1;
+        } else {
+            __CFRuntimeObjCClassList[index] = __CFRuntimeObjCClassList[index-1];
+            index--;
+        }
+    } while (index >= 0);
+}
+
+// Check whether the given pointer is a bridged class
+CF_INLINE Boolean _CFRuntimeObjCClassTableContains(uintptr_t class) {
+    uintptr_t entry, *ptr = __CFRuntimeObjCClassList;
+    while ((entry = *ptr++)) {
+        if (entry <= class) return entry == class;
+    }
+    return false;
+}
+
 void _CFRuntimeBridgeTypeToClass(CFTypeID cf_typeID, const void *cls_ref) {
     __CFLock(&__CFBigRuntimeFunnel);
     __CFRuntimeObjCClassTable[cf_typeID] = (uintptr_t)cls_ref;
+    _CFRuntimeObjCClassTableInsert((uintptr_t)cls_ref);
     __CFUnlock(&__CFBigRuntimeFunnel);
 }
 
@@ -643,17 +671,41 @@ CF_INLINE Boolean CFTYPE_IS_SWIFT(const void *obj) {
 
 #endif
 
+// _sjc_ Defined in NSBlock.m. Used to create class mapping to support blocks-as-objects.
+void ___CFMakeNSBlockClasses(void);
 
-#define CFTYPE_IS_OBJC(obj) (false)
-#define CFTYPE_OBJC_FUNCDISPATCH0(rettype, obj, sel) do {} while (0)
-#define CFTYPE_OBJC_FUNCDISPATCH1(rettype, obj, sel, a1) do {} while (0)
+// _sjc_ For fast ISA comparison, on the assumption that we will mostly be passed CF types
+uintptr_t __NSCFType = NULL;
 
+// _sjc_ We define these and fill them in in _CFInitialize() for speed
+static SEL sel___cfTypeID = NULL;
+static SEL sel__retain = NULL;
+static SEL sel__release = NULL;
+static SEL sel__retainCount = NULL;
+static SEL sel__description = NULL;
+static SEL sel__hash = NULL;
+static SEL sel__isEqual = NULL;
+
+extern const uintptr_t objc_debug_isa_class_mask;
+
+// _sjc_ Check whether we have a CF type or an objective-c object. To qualify as an objective-c object:
+//          - Its ISA must be non-NULL
+//          - Its ISA shouldn't point to __NSCFType
+//          - Its ISA shouldn't be listed in the bridged types table
+//  The last point means that we treat bridged classes as CF types
+
+#define CF_ISA(obj) (((CFRuntimeBase *)obj)->_cfisa & objc_debug_isa_class_mask)
+#define CF_ISA_IS_OBJC(isa) (isa && isa != __NSCFType && !_CFRuntimeObjCClassTableContains(isa))
+#define CFTYPE_OBJC_FUNCDISPATCH0(rettype, obj, sel) \
+    { uintptr_t isa = CF_ISA(obj); if (CF_ISA_IS_OBJC(isa)) { return (rettype)objc_msgSend((id)obj, sel); }}
+#define CFTYPE_OBJC_FUNCDISPATCH1(rettype, obj, sel, a1) \
+    { uintptr_t isa = CF_ISA(obj); if (CF_ISA_IS_OBJC(isa)) { return (rettype)objc_msgSend((id)obj, sel, a1); }}
 
 CFTypeID CFGetTypeID(CFTypeRef cf) {
 #if defined(DEBUG)
     if (NULL == cf) { CRSetCrashLogMessage("*** CFGetTypeID() called with NULL ***"); HALT; }
 #endif
-    CFTYPE_OBJC_FUNCDISPATCH0(CFTypeID, cf, _cfTypeID);
+    CFTYPE_OBJC_FUNCDISPATCH0(CFTypeID, cf, sel___cfTypeID);
     CFTYPE_SWIFT_FUNCDISPATCH0(CFTypeID, cf, NSObject._cfTypeID);
     
     __CFGenericAssertIsCF(cf);
@@ -676,6 +728,7 @@ CFTypeRef _CFNonObjCRetain(CFTypeRef cf) {
 
 CFTypeRef CFRetain(CFTypeRef cf) {
     if (NULL == cf) { CRSetCrashLogMessage("*** CFRetain() called with NULL ***"); HALT; }
+    CFTYPE_OBJC_FUNCDISPATCH0(id, cf, sel__retain)
     if (cf) __CFGenericAssertIsCF(cf);
     return _CFRetain(cf, false);
 }
@@ -694,6 +747,7 @@ void _CFNonObjCRelease(CFTypeRef cf) {
 
 void CFRelease(CFTypeRef cf) {
     if (NULL == cf) { CRSetCrashLogMessage("*** CFRelease() called with NULL ***"); HALT; }
+    CFTYPE_OBJC_FUNCDISPATCH0(id, cf, sel__release)
     if (cf) __CFGenericAssertIsCF(cf);
     _CFRelease(cf);
 }
@@ -779,6 +833,7 @@ CF_PRIVATE void __CFRuntimeSetRC(CFTypeRef cf, uint32_t rc) {
 
 CFIndex CFGetRetainCount(CFTypeRef cf) {
     if (NULL == cf) { CRSetCrashLogMessage("*** CFGetRetainCount() called with NULL ***"); HALT; }
+    CFTYPE_OBJC_FUNCDISPATCH0(CFIndex, cf, sel__retainCount);
     __CFInfoType info = atomic_load(&(((CFRuntimeBase *)cf)->_cfinfoa));
     if (info & RC_CUSTOM_RC_BIT) { // custom ref counting for object
         CFTypeID typeID = __CFTypeIDFromInfo(info);
@@ -818,7 +873,7 @@ Boolean _CFNonObjCEqual(CFTypeRef cf1, CFTypeRef cf2) {
     //cf1 is guaranteed to be non-NULL and non-ObjC, cf2 is unknown
     if (cf1 == cf2) return true;
     if (NULL == cf2) { CRSetCrashLogMessage("*** CFEqual() called with NULL second argument ***"); HALT; }
-    CFTYPE_OBJC_FUNCDISPATCH1(Boolean, cf2, isEqual:, cf1);
+    CFTYPE_OBJC_FUNCDISPATCH1(Boolean, cf2, sel__isEqual, cf1);
     CFTYPE_SWIFT_FUNCDISPATCH1(Boolean, cf2, NSObject.isEqual, (CFSwiftRef)cf1);
     __CFGenericAssertIsCF(cf1);
     __CFGenericAssertIsCF(cf2);
@@ -833,8 +888,8 @@ Boolean CFEqual(CFTypeRef cf1, CFTypeRef cf2) {
     if (NULL == cf1) { CRSetCrashLogMessage("*** CFEqual() called with NULL first argument ***"); HALT; }
     if (cf1 == cf2) return true;
     if (NULL == cf2) { CRSetCrashLogMessage("*** CFEqual() called with NULL second argument ***"); HALT; }
-    CFTYPE_OBJC_FUNCDISPATCH1(Boolean, cf1, isEqual:, cf2);
-    CFTYPE_OBJC_FUNCDISPATCH1(Boolean, cf2, isEqual:, cf1);
+    CFTYPE_OBJC_FUNCDISPATCH1(Boolean, cf1, sel__isEqual, cf2);
+    CFTYPE_OBJC_FUNCDISPATCH1(Boolean, cf2, sel__isEqual, cf1);
     CFTYPE_SWIFT_FUNCDISPATCH1(Boolean, cf1, NSObject.isEqual, (CFSwiftRef)cf2);
     CFTYPE_SWIFT_FUNCDISPATCH1(Boolean, cf2, NSObject.isEqual, (CFSwiftRef)cf1);
     __CFGenericAssertIsCF(cf1);
@@ -857,12 +912,12 @@ CFHashCode _CFNonObjCHash(CFTypeRef cf) {
 
 CFHashCode CFHash(CFTypeRef cf) {
     if (NULL == cf) { CRSetCrashLogMessage("*** CFHash() called with NULL ***"); HALT; }
-    CFTYPE_OBJC_FUNCDISPATCH0(CFHashCode, cf, hash);
+    CFTYPE_OBJC_FUNCDISPATCH0(CFHashCode, cf, sel__hash);
     CFTYPE_SWIFT_FUNCDISPATCH0(CFHashCode, cf, NSObject.hash);
     __CFGenericAssertIsCF(cf);
     CFHashCode (*hash)(CFTypeRef cf) = __CFRuntimeClassTable[__CFGenericTypeID_inline(cf)]->hash; 
     if (NULL != hash) {
-	return hash(cf);
+        return hash(cf);
     }
     return (CFHashCode)cf;
 }
@@ -870,11 +925,11 @@ CFHashCode CFHash(CFTypeRef cf) {
 // definition: produces a normally non-NULL debugging description of the object
 CFStringRef CFCopyDescription(CFTypeRef cf) {
     if (NULL == cf) return NULL;
-    // CFTYPE_OBJC_FUNCDISPATCH0(CFStringRef, cf, _copyDescription);  // XXX returns 0 refcounted item under GC
+    CFTYPE_OBJC_FUNCDISPATCH0(CFStringRef, cf, sel__description);  // XXX returns 0 refcounted item under GC
     __CFGenericAssertIsCF(cf);
     if (NULL != __CFRuntimeClassTable[__CFGenericTypeID_inline(cf)]->copyDebugDesc) {
-	CFStringRef result = __CFRuntimeClassTable[__CFGenericTypeID_inline(cf)]->copyDebugDesc(cf);
-	if (NULL != result) return result;
+        CFStringRef result = __CFRuntimeClassTable[__CFGenericTypeID_inline(cf)]->copyDebugDesc(cf);
+        if (NULL != result) return result;
     }
     return CFStringCreateWithFormat(kCFAllocatorSystemDefault, NULL, CFSTR("<%s %p [%p]>"), __CFRuntimeClassTable[__CFGenericTypeID_inline(cf)]->className, cf, CFGetAllocator(cf));
 }
@@ -1060,7 +1115,6 @@ pthread_t _CF_pthread_main_thread_np(void) {
 
 #endif
 
-
 #if DEPLOYMENT_TARGET_LINUX || DEPLOYMENT_TARGET_FREEBSD || DEPLOYMENT_TARGET_MACOSX
 static void __CFInitialize(void) __attribute__ ((constructor));
 static
@@ -1099,6 +1153,7 @@ void __CFInitialize(void) {
 
         memset(__CFRuntimeClassTable, 0, sizeof(__CFRuntimeClassTable));
         memset(__CFRuntimeObjCClassTable, 0, sizeof(__CFRuntimeObjCClassTable));
+        memset(__CFRuntimeObjCClassList, 0, sizeof(__CFRuntimeObjCClassList));
 
 #if DEPLOYMENT_RUNTIME_SWIFT
         extern uintptr_t __CFSwiftGetBaseClass(void);
@@ -1109,6 +1164,11 @@ void __CFInitialize(void) {
         }
 #endif
         
+        // We return this class from __CFISAForTypeID for any type which isn't assigned a bridged class
+        __NSCFType = objc_getClass("__NSCFType");
+        for (CFIndex idx = 1; idx < __CFRuntimeClassTableSize; idx++) {
+            __CFRuntimeObjCClassTable[idx] = __NSCFType;
+        }
 
         /* Here so that two runtime classes get indices 0, 1. */
         __kCFNotATypeTypeID = _CFRuntimeRegisterClass(&__CFNotATypeClass);
@@ -1208,7 +1268,21 @@ void __CFInitialize(void) {
             // The isa of constant strings point to __CFConstantStringClassReference
             // By copying the Class info for NSCFConstantString into this structure we bridge the strings
             memcpy(__CFConstantStringClassReference, class, sizeof(__CFConstantStringClassReference));
+            // Include constant strings in this table so actions on them take the CF code path
+            _CFRuntimeObjCClassTableInsert((uintptr_t)class);
             
+            // Maps blocks types to objective-c classes
+            ___CFMakeNSBlockClasses();
+            
+            // Cache these selector because using @selector() would mean having to compile this file as obj-c
+            sel___cfTypeID = sel_getUid("_cfTypeID");
+            sel__retain = sel_getUid("retain");
+            sel__release = sel_getUid("release");
+            sel__retainCount = sel_getUid("retainCount");
+            sel__description = sel_getUid("description");
+            sel__hash = sel_getUid("hash");
+            sel__isEqual = sel_getUid("isEqual:");
+
             // Install the bridge for all other bridged classes
             // The bridge for CFNull is in the once block of CFNullGetTypeID()
             _CFRuntimeBridgeTypeToClass(CFArrayGetTypeID(), objc_getClass("__NSCFArray"));
@@ -1221,8 +1295,8 @@ void __CFInitialize(void) {
             _CFRuntimeBridgeTypeToClass(CFErrorGetTypeID(), objc_getClass("__NSCFError"));
             _CFRuntimeBridgeTypeToClass(CFLocaleGetTypeID(), objc_getClass("__NSCFLocale"));
             _CFRuntimeBridgeTypeToClass(CFNumberGetTypeID(), objc_getClass("__NSCFNumber"));
-            _CFRuntimeBridgeTypeToClass(CFReadStreamGetTypeID(), objc_getClass("NSCFReadStream")); // <-- check
-            _CFRuntimeBridgeTypeToClass(CFWriteStreamGetTypeID(), objc_getClass("NSCFWriteStream")); // <-- check
+            _CFRuntimeBridgeTypeToClass(CFReadStreamGetTypeID(), objc_getClass("NSCFInputStream"));
+            _CFRuntimeBridgeTypeToClass(CFWriteStreamGetTypeID(), objc_getClass("NSCFOutputStream"));
             _CFRuntimeBridgeTypeToClass(CFRunLoopTimerGetTypeID(), objc_getClass("__NSCFTimer"));
             _CFRuntimeBridgeTypeToClass(CFSetGetTypeID(), objc_getClass("__NSCFSet"));
             _CFRuntimeBridgeTypeToClass(CFStringGetTypeID(), objc_getClass("__NSCFString"));
@@ -1239,7 +1313,6 @@ void __CFInitialize(void) {
         __CFNumberInitialize(); /* needs to happen after Swift bridge is initialized */
 #endif
         
-
         {
             CFIndex idx, cnt = 0;
             char **args = NULL;

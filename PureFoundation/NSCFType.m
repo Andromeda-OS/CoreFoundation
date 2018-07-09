@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ForFoundationOnly.h"
 
-// TODO: Need to work out whether we should bridge every non-bridged class to this class
+// Every non-bridged CF type reports itself as this class
 
 #define SELF    (CFTypeRef)self
 
@@ -22,19 +23,34 @@
 // t -[__NSCFType _isDeallocating]
 // t -[__NSCFType _tryRetain]
 
-// Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain(SELF); }
-- (NSUInteger)retainCount { return CFGetRetainCount(SELF); }
-- (oneway void)release { CFRelease(SELF); }
+// The standard bridged-class over-rides
+// These allow CF types to interact with Foundation
+// The CFTYPE_IS_OBJC check specifically returns false for this class, so the CF codepath is taken
+
+- (id)retain {
+    return (id)_CFNonObjCRetain(SELF);
+}
+
+- (NSUInteger)retainCount {
+    return CFGetRetainCount(SELF);
+}
+
+- (oneway void)release {
+    _CFNonObjCRelease(SELF);
+}
+
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash(SELF); }
+
+- (NSUInteger)hash {
+    return _CFNonObjCHash(SELF);
+}
 
 - (NSString *)description {
     return [(id)CFCopyDescription(SELF) autorelease];
 }
 
 - (BOOL)isEqual:(id)object {
-    return [object isKindOfClass:[__NSCFType class]] && CFEqual(SELF, (CFTypeRef)object);
+    return object && _CFNonObjCEqual(SELF, (CFTypeID)object);
 }
 
 @end

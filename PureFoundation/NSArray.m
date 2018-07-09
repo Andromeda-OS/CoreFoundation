@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ForFoundationOnly.h"
 #import "PureFoundation.h"
 #import "FileLoaders.h"
 
@@ -525,11 +526,14 @@ static void PFArrayMakePerformSelector(const void *value, void *context) {
 }
 
 // Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 /*
  *    sjc -- 9/2/09 -- The format now matches Cocoa's. I thought.

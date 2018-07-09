@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ForFoundationOnly.h"
 #import "PureFoundation.h"
+#import "CFSet.h"
 
 #define SET_CALLBACKS   (&_PFCollectionCallBacks)
 #define ARRAY_CALLBACKS ((CFArrayCallBacks *)&_PFCollectionCallBacks)
@@ -46,6 +48,10 @@ static CFSetRef PFSetShallowCopy(CFSetRef set, CFIndex count) {
     free(values);
     return newSet;
 }
+
+// Defined in CFSet.c
+// state param was originally defined as struct __objcFastEnumerationStateEquivalent
+CF_EXPORT unsigned long _CFSetFastEnumeration(CFTypeRef hc, NSFastEnumerationState *state, void *stackbuffer, unsigned long count);
 
 @implementation NSSet
 
@@ -457,11 +463,14 @@ static CFSetRef PFSetShallowCopy(CFSetRef set, CFIndex count) {
 }
 
 // Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)length {
     return _CFSetFastEnumeration(SELF, state, state, length);
@@ -514,11 +523,6 @@ static CFSetRef PFSetShallowCopy(CFSetRef set, CFIndex count) {
 
 - (BOOL)containsObject:(id)anObject {
     return anObject ? CFSetContainsValue(SELF, (const void *)anObject) : NO;
-}
-
-- (BOOL)isEqual:(NSSet *)otherSet {
-    if (!otherSet) return NO;
-    return (self == otherSet) || CFEqual((CFTypeRef)self, (CFTypeRef)otherSet);
 }
 
 - (BOOL)isEqualToSet:(NSSet *)otherSet {

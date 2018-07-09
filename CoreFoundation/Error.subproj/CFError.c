@@ -127,9 +127,7 @@ static CFStringRef __CFErrorCopyDescription(CFTypeRef cf) {
 /* This is the description you get for %@. Note that this used to return the shorter description prior to 10.11/iOS9; moving forward we just generate the same result.  In general this function is rarely invoked, so shouldn't matter much.
 */
 static CFStringRef __CFErrorCopyFormattingDescription(CFTypeRef cf, CFDictionaryRef formatOptions) {
-    if (
-        true
-        ) {
+    if (true) {
         return _CFErrorCreateDebugDescription((CFErrorRef)cf);
     } else {
         return CFErrorCopyDescription((CFErrorRef)cf);
