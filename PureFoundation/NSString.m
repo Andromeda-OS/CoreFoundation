@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ForFoundationOnly.h"
 #import "PureFoundation.h"
 
-// Hmm... NSString and NSMutableString are implemented in Foundation, but the bridged class __NSCFString is implemented here
+// NSString and NSMutableString are implemented in Foundation, but the bridged class __NSCFString is implemented here
 
 #define SELF ((CFStringRef)self)
 #define MSELF ((CFMutableStringRef)self)
@@ -37,11 +38,14 @@
 // TODO: implement -classForCoder
 
 // Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+//- (BOOL)isEqual:(id)object {
+//    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+//}
 
 - (NSString *)description {
     return [(id)CFRetain(SELF) autorelease];
@@ -1177,6 +1181,9 @@
 - (NSUInteger)retainCount { return NSIntegerMax; }
 - (id)copyWithZone:(NSZone *)zone { return self; }
 - (BOOL)isNSCFConstantString__ { return YES; }
+- (NSUInteger)hash {
+    return _CFNonObjCHash((CFTypeRef)self);
+}
 @end
 
 

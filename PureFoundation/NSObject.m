@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 
 // NSObject is defined in libobjc
+
+@interface NSObject (__NSCFType)
+- (CFTypeID)_cfTypeID;
+@end
+
+@implementation NSObject (__NSCFType)
+- (CFTypeID)_cfTypeID {
+    return 1; // == __kCFTypeTypeID
+}
+@end
+
+
 // TODO: Need to indeirect export NSObject
 
 /*
@@ -75,6 +87,3 @@ I _OBJC_METACLASS_$_NSObject (indirect for _OBJC_METACLASS_$_NSObject)
 0000000000097e20 t -[NSObject(NSObject) methodSignatureForSelector:]
 */
 
-/*
-0000000000055d50 t -[NSObject(__NSCFType) _cfTypeID]
-*/

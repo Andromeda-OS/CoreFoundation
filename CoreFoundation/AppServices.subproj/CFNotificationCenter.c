@@ -159,7 +159,7 @@ static CFTypeID __kCFNotificationCenterTypeID = _kCFRuntimeNotATypeID;
 // This must be called from __CFInitialize in CFRuntime.h before notification centers can be used
 __private_extern__ void __CFNotificationCenterInitialize(void) {
 	__kCFNotificationCenterTypeID = _CFRuntimeRegisterClass(&__CFNotificationCenterClass);
-	__CFHashStore = CFDictionaryCreateMutable( kCFAllocatorDefault, 0, NULL, NULL );
+	__CFHashStore = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, NULL, NULL);
 }
 
 CFTypeID CFNotificationCenterGetTypeID(void) {

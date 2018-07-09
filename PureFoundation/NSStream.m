@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ForFoundationOnly.h"
 #import "CFStreamPriv.h"
 
 #define RSTREAM     ((CFReadStreamRef)self)
@@ -58,11 +59,14 @@ static void _PFWriteStreamCB(CFWriteStreamRef stream, CFStreamEventType eventTyp
 }
 
 // Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 - (NSString *)description {
     return [(id)CFCopyDescription((CFTypeRef)self) autorelease];
@@ -137,11 +141,14 @@ static void _PFWriteStreamCB(CFWriteStreamRef stream, CFStreamEventType eventTyp
 }
 
 // Standard bridged-class over-rides
-- (id)retain { return (id)CFRetain((CFTypeRef)self); }
+- (id)retain { return (id)_CFNonObjCRetain((CFTypeRef)self); }
 - (NSUInteger)retainCount { return (NSUInteger)CFGetRetainCount((CFTypeRef)self); }
-- (oneway void)release { CFRelease((CFTypeRef)self); }
+- (oneway void)release { _CFNonObjCRelease((CFTypeRef)self); }
 - (void)dealloc { } // this is missing [super dealloc] on purpose, XCode
-- (NSUInteger)hash { return CFHash((CFTypeRef)self); }
+- (NSUInteger)hash { return _CFNonObjCHash((CFTypeRef)self); }
+- (BOOL)isEqual:(id)object {
+    return object && _CFNonObjCEqual((CFTypeRef)self, (CFTypeRef)object);
+}
 
 -(NSString *)description {
     return [(id)CFCopyDescription((CFTypeRef)self) autorelease];

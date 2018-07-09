@@ -581,20 +581,20 @@ void *CFAllocatorAllocate(CFAllocatorRef allocator, CFIndex size, CFOptionFlags 
     void *newptr = NULL;
 
     if (NULL == allocator) {
-	allocator = __CFGetDefaultAllocator();
+        allocator = __CFGetDefaultAllocator();
     }
 
 #if defined(DEBUG) && (DEPLOYMENT_TARGET_MACOSX || DEPLOYMENT_TARGET_EMBEDDED || DEPLOYMENT_TARGET_EMBEDDED_MINI)
     if (allocator->_base._cfisa == __CFISAForTypeID(__kCFAllocatorTypeID)) {
-	__CFGenericValidateType(allocator, __kCFAllocatorTypeID);
+        __CFGenericValidateType(allocator, __kCFAllocatorTypeID);
     }
 #else
     __CFGenericValidateType(allocator, __kCFAllocatorTypeID);
 #endif
     if (0 == size) return NULL;
 #if DEPLOYMENT_TARGET_MACOSX || DEPLOYMENT_TARGET_EMBEDDED || DEPLOYMENT_TARGET_EMBEDDED_MINI
-    if (allocator->_base._cfisa != __CFISAForTypeID(__kCFAllocatorTypeID)) {	// malloc_zone_t *
-	return malloc_zone_malloc((malloc_zone_t *)allocator, size);
+    if (allocator->_base._cfisa != __CFISAForTypeID(__kCFAllocatorTypeID)) {    // malloc_zone_t *
+        return malloc_zone_malloc((malloc_zone_t *)allocator, size);
     }
 #endif
     newptr = NULL;
@@ -673,20 +673,21 @@ void CFAllocatorDeallocate(CFAllocatorRef allocator, void *ptr) {
 
 #if defined(DEBUG) && (DEPLOYMENT_TARGET_MACOSX || DEPLOYMENT_TARGET_EMBEDDED || DEPLOYMENT_TARGET_EMBEDDED_MINI)
     if (allocator->_base._cfisa == __CFISAForTypeID(__kCFAllocatorTypeID)) {
-	__CFGenericValidateType(allocator, __kCFAllocatorTypeID);
+        __CFGenericValidateType(allocator, __kCFAllocatorTypeID);
     }
 #else
     __CFGenericValidateType(allocator, __kCFAllocatorTypeID);
 #endif
 #if DEPLOYMENT_TARGET_MACOSX || DEPLOYMENT_TARGET_EMBEDDED || DEPLOYMENT_TARGET_EMBEDDED_MINI
-    if (allocator->_base._cfisa != __CFISAForTypeID(__kCFAllocatorTypeID)) {	// malloc_zone_t *
+    if (allocator->_base._cfisa != __CFISAForTypeID(__kCFAllocatorTypeID)) {    // malloc_zone_t *
 #if defined(DEBUG)
-	size_t size = malloc_size(ptr);
-	if (size) memset(ptr, 0xCC, size);
+        size_t size = malloc_size(ptr);
+        if (size) memset(ptr, 0xCC, size);
 #endif
-	return malloc_zone_free((malloc_zone_t *)allocator, ptr);
+        return malloc_zone_free((malloc_zone_t *)allocator, ptr);
     }
 #endif
+
     deallocateFunc = __CFAllocatorGetDeallocateFunction(&allocator->_context);
     if (NULL != ptr && NULL != deallocateFunc) {
 	INVOKE_CALLBACK2(deallocateFunc, ptr, allocator->_context.info);

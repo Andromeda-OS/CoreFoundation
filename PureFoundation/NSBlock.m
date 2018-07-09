@@ -7,91 +7,149 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
 // The definitions of NSBlock etc. are not public. Block instances report different classes as their type.
 
-// These are defined elsewhere, but I'm not sure where
-//U __NSConcreteAutoBlock
-//U __NSConcreteFinalizingBlock
-//U __NSConcreteGlobalBlock
-//U __NSConcreteMallocBlock
-//U __NSConcreteStackBlock
-//U __NSConcreteWeakBlockVariable
+// Inheritance runs:
+//  NSObject -> NSBlock -> __NSGlobalBlock -> __NSGlobalBlock__ (_NSConcreteGlobalBlock)
+//                      -> __NSStackBlock -> __NSStackBlock__ (_NSConcreteStackBlock)
+// Other block types appear to follow the same pattern.
 
-/*
-0000000000007ad0 t ___CFMakeNSBlockClasses
-*/
+// This is defined in <objc/objc-internal.h>
+extern Class objc_initializeClassPair(Class superclass, const char *name, Class cls, Class metacls);
 
-/*
-00000000005d9008 S _OBJC_CLASS_$_NSBlock
-00000000005d9c88 S _OBJC_METACLASS_$_NSBlock
+@interface NSBlock : NSObject
+@end
 
-00000000001bd020 t +[NSBlock allocWithZone:]
-00000000001bd040 t +[NSBlock alloc]
+@interface __NSGlobalBlock : NSBlock
+@end
 
-000000000007d850 t -[NSBlock copyWithZone:]
-00000000000418e0 t -[NSBlock copy]
-00000000001bd060 t -[NSBlock invoke]
-00000000001bd070 t -[NSBlock performAfterDelay:]
-*/
+@interface __NSStackBlock : NSBlock
+@end
 
-/*
-00000000005d9710 S _OBJC_CLASS_$___NSAutoBlock
-00000000005da390 S _OBJC_METACLASS_$___NSAutoBlock
+@interface __NSMallocBlock : NSBlock
+@end
 
-00000000001bd160 t -[__NSAutoBlock copyWithZone:]
-00000000001bd150 t -[__NSAutoBlock copy]
-*/
+@interface __NSAutoBlock : NSBlock
+@end
 
-/*
-00000000005d9738 S _OBJC_CLASS_$___NSBlockVariable
-00000000005da3b8 S _OBJC_METACLASS_$___NSBlockVariable
+@interface __NSFinalizingBlock : NSBlock
+@end
 
-00000000005d6878 S _OBJC_IVAR_$___NSBlockVariable.byref_destroy
-00000000005d6870 S _OBJC_IVAR_$___NSBlockVariable.byref_keep
-00000000005d6880 S _OBJC_IVAR_$___NSBlockVariable.containedObject
-00000000005d6860 S _OBJC_IVAR_$___NSBlockVariable.flags
-00000000005d6858 S _OBJC_IVAR_$___NSBlockVariable.forwarding
-00000000005d6868 S _OBJC_IVAR_$___NSBlockVariable.size
-*/
+@interface __NSBlockVariable : NSBlock // <-- check this
+@end
 
-/*
-00000000005d97b0 S _OBJC_CLASS_$___NSGlobalBlock
-00000000005da430 S _OBJC_METACLASS_$___NSGlobalBlock
+// These are defined in libsystem_blocks.dylib. When blocks are created, their isa points to one of these.
+// _NSConcreteGlobalBlock and _NSConcreteStackBlock are exposed through /usr/include/Block.h
+// The others are in Block_private.h but are re-declared here for simplicity
+extern void *_NSConcreteAutoBlock[32];
+extern void *_NSConcreteFinalizingBlock[32];
+extern void *_NSConcreteMallocBlock[32];
+extern void *_NSConcreteWeakBlockVariable[32];
 
-00000000001bd1b0 t -[__NSGlobalBlock _isDeallocating]
-00000000001bd1a0 t -[__NSGlobalBlock _tryRetain]
-000000000007f3e0 t -[__NSGlobalBlock copyWithZone:]
-00000000000713c0 t -[__NSGlobalBlock copy]
-0000000000094470 t -[__NSGlobalBlock release]
-00000000001bd190 t -[__NSGlobalBlock retainCount]
-0000000000048520 t -[__NSGlobalBlock retain]
-*/
+// cls: super class, name: name for new mapped class, ptr: class structure defined in libsystem_blocks
+// Block_private.h describes the _NSConcrete... structures as "class+meta", which is why the last param points to the second half of these structures
+#define MAP_BLOCK_TO_CLASS(cls,name,ptr) \
+    { Class blockClass = objc_initializeClassPair([cls class], name, (Class)ptr, (Class)(ptr + 16)); objc_registerClassPair(blockClass); }
 
-/*
-00000000005d9788 S _OBJC_CLASS_$___NSFinalizingBlock
-00000000005da408 S _OBJC_METACLASS_$___NSFinalizingBlock
+// Create the obj-c classes which map the _NSConcrete...Block ISAs into the runtime
+// This is called from _CFInitialize() in Runtime.c
+void ___CFMakeNSBlockClasses(void) {
+    // _NSConcreteGlobalBlock => __NSGlobalBlock__
+    MAP_BLOCK_TO_CLASS(__NSGlobalBlock, "__NSGlobalBlock__", _NSConcreteGlobalBlock);
+    // _NSConcreteStackBlock => __NSStackBlock__
+    MAP_BLOCK_TO_CLASS(__NSStackBlock, "__NSStackBlock__", _NSConcreteStackBlock);
+    // _NSConcreteMallocBlock => __NSMallocBlock__
+    MAP_BLOCK_TO_CLASS(__NSMallocBlock, "__NSMallocBlock__", _NSConcreteMallocBlock);
+    // _NSConcreteAutoBlock => __NSAutoBlock__
+    MAP_BLOCK_TO_CLASS(__NSAutoBlock, "__NSAutoBlock__", _NSConcreteAutoBlock);
+    // _NSConcreteFinalizingBlock => __NSFinalizingBlock__
+    MAP_BLOCK_TO_CLASS(__NSFinalizingBlock, "__NSFinalizingBlock__", _NSConcreteFinalizingBlock);
+    // _NSConcreteWeakBlockVariable => __NSBlockVariable__
+    MAP_BLOCK_TO_CLASS(__NSBlockVariable, "__NSBlockVariable__", _NSConcreteWeakBlockVariable);
+}
 
-00000000001bd170 t -[__NSFinalizingBlock finalize]
-*/
+#undef MAP_BLOCK_TO_CLASS
 
-/*
-00000000005d9a58 S _OBJC_CLASS_$___NSStackBlock
-00000000005da6d8 S _OBJC_METACLASS_$___NSStackBlock
 
-00000000001bd110 t -[__NSStackBlock autorelease]
-000000000007fdc0 t -[__NSStackBlock release]
-00000000001bd100 t -[__NSStackBlock retainCount]
-000000000007fdb0 t -[__NSStackBlock retain]
-*/
+@implementation NSBlock
 
-/*
-00000000005d9a30 S _OBJC_CLASS_$___NSMallocBlock
-00000000005da6b0 S _OBJC_METACLASS_$___NSMallocBlock
+// TODO:
+// t -[NSBlock invoke]
+// t -[NSBlock performAfterDelay:]
 
-00000000001bd140 t -[__NSMallocBlock _isDeallocating]
-00000000001bd130 t -[__NSMallocBlock _tryRetain]
-0000000000056eb0 t -[__NSMallocBlock release]
-00000000001bd120 t -[__NSMallocBlock retainCount]
-0000000000055df0 t -[__NSMallocBlock retain]
-*/
+- (id)copyWithZone:(__unused NSZone *)zone {
+    return _Block_copy(self);
+}
+
+- (id)copy {
+    return _Block_copy(self);
+}
+
+@end
+
+
+@implementation __NSGlobalBlock
+
+// TODO:
+// t -[__NSGlobalBlock _isDeallocating]
+// t -[__NSGlobalBlock _tryRetain]
+// t -[__NSGlobalBlock copyWithZone:]
+// t -[__NSGlobalBlock copy]
+// t -[__NSGlobalBlock release]
+// t -[__NSGlobalBlock retainCount]
+// t -[__NSGlobalBlock retain]
+
+@end
+
+
+@implementation __NSStackBlock
+
+// TODO:
+// t -[__NSStackBlock autorelease]
+// t -[__NSStackBlock release]
+// t -[__NSStackBlock retainCount]
+// t -[__NSStackBlock retain]
+
+@end
+
+
+@implementation __NSAutoBlock
+
+// TODO:
+// t -[__NSAutoBlock copyWithZone:]
+// t -[__NSAutoBlock copy]
+
+@end
+
+
+@implementation __NSMallocBlock
+
+// TODO:
+// t -[__NSMallocBlock release]
+// t -[__NSMallocBlock retainCount]
+// t -[__NSMallocBlock retain]
+
+@end
+
+
+@implementation __NSFinalizingBlock
+
+// TODO:
+// t -[__NSFinalizingBlock finalize]
+
+@end
+
+
+@implementation __NSBlockVariable
+
+// TODO:
+// S _OBJC_IVAR_$___NSBlockVariable.byref_destroy
+// S _OBJC_IVAR_$___NSBlockVariable.byref_keep
+// S _OBJC_IVAR_$___NSBlockVariable.containedObject
+// S _OBJC_IVAR_$___NSBlockVariable.flags
+// S _OBJC_IVAR_$___NSBlockVariable.forwarding
+// S _OBJC_IVAR_$___NSBlockVariable.size
+
+@end
