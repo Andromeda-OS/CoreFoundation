@@ -747,7 +747,7 @@ void _CFNonObjCRelease(CFTypeRef cf) {
 
 void CFRelease(CFTypeRef cf) {
     if (NULL == cf) { CRSetCrashLogMessage("*** CFRelease() called with NULL ***"); HALT; }
-    CFTYPE_OBJC_FUNCDISPATCH0(id, cf, sel__release)
+    { uintptr_t isa = CF_ISA(cf); if (CF_ISA_IS_OBJC(isa)) { objc_msgSend((id)cf, sel__release); }}
     if (cf) __CFGenericAssertIsCF(cf);
     _CFRelease(cf);
 }

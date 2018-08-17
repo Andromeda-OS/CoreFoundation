@@ -14,13 +14,13 @@
 /*
  *	Has at least 1 thread been spawned? Used to control use of mutexes.
  */
-BOOL _pf_IsMultiThreaded;
+extern BOOL _pf_IsMultiThreaded;
 
 /*
  *	Objective-C message-sending callbacks for use with CF collections, because otherwise
  *	non-CF-derived objects cause bad things to happen
  */
-CFSetCallBacks _PFCollectionCallBacks;
+extern CFSetCallBacks _PFCollectionCallBacks;
 
 @interface NSMethodSignature (NSMethodSignaturePFPrivateAccess)
 -(const char*)_typeString;

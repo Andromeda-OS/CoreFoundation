@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1F50D3CF2127635C00F11534 /* CFXMLInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D2DB2127635A00F11534 /* CFXMLInputStream.h */; };
-		1F50D3D02127635C00F11534 /* CFXMLInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D2DC2127635A00F11534 /* CFXMLInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F50D3D12127635C00F11534 /* CFXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D2DD2127635A00F11534 /* CFXMLNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F50D3D22127635C00F11534 /* CFXMLParser.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D2DE2127635A00F11534 /* CFXMLParser.c */; };
 		1F50D3D32127635C00F11534 /* CFXMLInputStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D2DF2127635A00F11534 /* CFXMLInputStream.c */; };
-		1F50D3D42127635C00F11534 /* CFXMLInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D2E02127635A00F11534 /* CFXMLInterface.c */; };
 		1F50D3D52127635C00F11534 /* CFXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D2E12127635A00F11534 /* CFXMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F50D3D62127635C00F11534 /* CFXMLTree.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D2E22127635A00F11534 /* CFXMLTree.c */; };
 		1F50D3D72127635C00F11534 /* CFXMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D2E32127635A00F11534 /* CFXMLNode.c */; };
@@ -92,7 +90,6 @@
 		1F50D4212127635C00F11534 /* CFBitVector.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3332127635A00F11534 /* CFBitVector.c */; };
 		1F50D4222127635C00F11534 /* CFDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D3342127635A00F11534 /* CFDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F50D4232127635C00F11534 /* NSOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3352127635A00F11534 /* NSOrderedSet.m */; };
-		1F50D4242127635C00F11534 /* CFBasicHashFindBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3362127635A00F11534 /* CFBasicHashFindBucket.m */; };
 		1F50D4252127635C00F11534 /* CFStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D3372127635A00F11534 /* CFStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F50D4262127635C00F11534 /* NSEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3382127635A00F11534 /* NSEnumerator.m */; };
 		1F50D4272127635C00F11534 /* CFSet.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3392127635A00F11534 /* CFSet.c */; };
@@ -228,15 +225,17 @@
 		1F50D4AE2127635C00F11534 /* NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3CC2127635C00F11534 /* NSData.m */; };
 		1F50D4AF2127635C00F11534 /* FileLoaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F50D3CD2127635C00F11534 /* FileLoaders.h */; };
 		1F50D4B02127635C00F11534 /* CFData.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F50D3CE2127635C00F11534 /* CFData.c */; };
+		1F50D4B42127672000F11534 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F50D4B32127672000F11534 /* libicucore.A.tbd */; };
+		1F50D4B62127672700F11534 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F50D4B52127672700F11534 /* libxml2.tbd */; };
+		1F50D4B82127672A00F11534 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F50D4B72127672A00F11534 /* libcurl.tbd */; };
+		1F50D4BA2127672C00F11534 /* libobjc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F50D4B92127672C00F11534 /* libobjc.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F50D2DB2127635A00F11534 /* CFXMLInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFXMLInputStream.h; sourceTree = "<group>"; };
-		1F50D2DC2127635A00F11534 /* CFXMLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFXMLInterface.h; sourceTree = "<group>"; };
 		1F50D2DD2127635A00F11534 /* CFXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFXMLNode.h; sourceTree = "<group>"; };
 		1F50D2DE2127635A00F11534 /* CFXMLParser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFXMLParser.c; sourceTree = "<group>"; };
 		1F50D2DF2127635A00F11534 /* CFXMLInputStream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFXMLInputStream.c; sourceTree = "<group>"; };
-		1F50D2E02127635A00F11534 /* CFXMLInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFXMLInterface.c; sourceTree = "<group>"; };
 		1F50D2E12127635A00F11534 /* CFXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFXMLParser.h; sourceTree = "<group>"; };
 		1F50D2E22127635A00F11534 /* CFXMLTree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFXMLTree.c; sourceTree = "<group>"; };
 		1F50D2E32127635A00F11534 /* CFXMLNode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFXMLNode.c; sourceTree = "<group>"; };
@@ -457,6 +456,10 @@
 		1F50D3CD2127635C00F11534 /* FileLoaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoaders.h; sourceTree = "<group>"; };
 		1F50D3CE2127635C00F11534 /* CFData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFData.c; sourceTree = "<group>"; };
 		1F50D4B12127638100F11534 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		1F50D4B32127672000F11534 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
+		1F50D4B52127672700F11534 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		1F50D4B72127672A00F11534 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
+		1F50D4B92127672C00F11534 /* libobjc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libobjc.tbd; path = usr/lib/libobjc.tbd; sourceTree = SDKROOT; };
 		3920B00C1E3DAABF00BDE669 /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3920B0101E3DAABF00BDE669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -466,6 +469,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F50D4BA2127672C00F11534 /* libobjc.tbd in Frameworks */,
+				1F50D4B82127672A00F11534 /* libcurl.tbd in Frameworks */,
+				1F50D4B62127672700F11534 /* libxml2.tbd in Frameworks */,
+				1F50D4B42127672000F11534 /* libicucore.A.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,11 +483,9 @@
 			isa = PBXGroup;
 			children = (
 				1F50D2DB2127635A00F11534 /* CFXMLInputStream.h */,
-				1F50D2DC2127635A00F11534 /* CFXMLInterface.h */,
 				1F50D2DD2127635A00F11534 /* CFXMLNode.h */,
 				1F50D2DE2127635A00F11534 /* CFXMLParser.c */,
 				1F50D2DF2127635A00F11534 /* CFXMLInputStream.c */,
-				1F50D2E02127635A00F11534 /* CFXMLInterface.c */,
 				1F50D2E12127635A00F11534 /* CFXMLParser.h */,
 				1F50D2E22127635A00F11534 /* CFXMLTree.c */,
 				1F50D2E32127635A00F11534 /* CFXMLNode.c */,
@@ -830,11 +835,23 @@
 			path = CFData;
 			sourceTree = "<group>";
 		};
+		1F50D4B22127672000F11534 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F50D4B92127672C00F11534 /* libobjc.tbd */,
+				1F50D4B72127672A00F11534 /* libcurl.tbd */,
+				1F50D4B52127672700F11534 /* libxml2.tbd */,
+				1F50D4B32127672000F11534 /* libicucore.A.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3920B0021E3DAABF00BDE669 = {
 			isa = PBXGroup;
 			children = (
 				3920B00E1E3DAABF00BDE669 /* CoreFoundation */,
 				3920B00D1E3DAABF00BDE669 /* Products */,
+				1F50D4B22127672000F11534 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -909,7 +926,6 @@
 				1F50D4912127635C00F11534 /* CFStringEncodingConverterPriv.h in Headers */,
 				1F50D46F2127635C00F11534 /* CFRunArray.h in Headers */,
 				1F50D4392127635C00F11534 /* CFPropertyList.h in Headers */,
-				1F50D3D02127635C00F11534 /* CFXMLInterface.h in Headers */,
 				1F50D4832127635C00F11534 /* CFDateFormatter.h in Headers */,
 				1F50D43B2127635C00F11534 /* CFPreferences.h in Headers */,
 				1F50D4332127635C00F11534 /* CFSet.h in Headers */,
@@ -1110,7 +1126,6 @@
 				1F50D42C2127635C00F11534 /* CFDictionary.c in Sources */,
 				1F50D4A22127635C00F11534 /* NSInvocation.m in Sources */,
 				1F50D4822127635C00F11534 /* CFCalendar.c in Sources */,
-				1F50D3D42127635C00F11534 /* CFXMLInterface.c in Sources */,
 				1F50D4B02127635C00F11534 /* CFData.c in Sources */,
 				1F50D40F2127635C00F11534 /* CFBundle_Locale.c in Sources */,
 				1F50D42F2127635C00F11534 /* CFArray.c in Sources */,
@@ -1120,7 +1135,6 @@
 				1F50D45D2127635C00F11534 /* CFURLSessionInterface.c in Sources */,
 				1F50D4A82127635C00F11534 /* NSMethodSignature.m in Sources */,
 				1F50D3FB2127635C00F11534 /* CFMachPort.c in Sources */,
-				1F50D4242127635C00F11534 /* CFBasicHashFindBucket.m in Sources */,
 				1F50D4322127635C00F11534 /* CFTree.c in Sources */,
 				1F50D4AC2127635C00F11534 /* FileLoaders.m in Sources */,
 				1F50D4142127635C00F11534 /* CFBundle_DebugStrings.c in Sources */,
@@ -1239,7 +1253,8 @@
 					"-DCF_CHARACTERSET_UNICHAR_DB=\\\"CoreFoundation/Resources/CFUniCharPropertyDatabase.data\\\"",
 					"-DCF_CHARACTERSET_BITMAP=\\\"CoreFoundation/Resources/CFCharacterSetBitmaps.bitmap\\\"",
 				);
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/headers";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1301,7 +1316,8 @@
 					"-DCF_CHARACTERSET_UNICHAR_DB=\\\"CoreFoundation/Resources/CFUniCharPropertyDatabase.data\\\"",
 					"-DCF_CHARACTERSET_BITMAP=\\\"CoreFoundation/Resources/CFCharacterSetBitmaps.bitmap\\\"",
 				);
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/headers";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1330,7 +1346,6 @@
 					INCLUDE_OBJC,
 					_PUREDARWIN,
 				);
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = CoreFoundation/Info.plist;
 				INSTALL_PATH = /System/Library/Frameworks;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1339,9 +1354,6 @@
 				MODULEMAP_FILE = CoreFoundation/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-licucore.A",
-					"-lxml2",
-					"-lobjc",
 					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/SymbolAliases",
 					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/Resources/CFCharacterSetBitmaps.bitmap",
 					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/Resources/CFCharacterSetBitmaps.bitmap",
@@ -1353,7 +1365,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SEPARATE_STRIP = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
 			};
 			name = Debug;
 		};
@@ -1380,7 +1391,6 @@
 					__HAS_DISPATCH__,
 					_PUREDARWIN,
 				);
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = CoreFoundation/Info.plist;
 				INSTALL_PATH = /System/Library/Frameworks;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1389,9 +1399,6 @@
 				MODULEMAP_FILE = CoreFoundation/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-licucore.A",
-					"-lxml2",
-					"-lobjc",
 					"-Wl,-alias_list,$(SRCROOT)/CoreFoundation/SymbolAliases",
 					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/Resources/CFCharacterSetBitmaps.bitmap",
 					"-Wl,-sectcreate,__UNICODE,__csbitmaps,CoreFoundation/Resources/CFCharacterSetBitmaps.bitmap",
@@ -1403,7 +1410,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SEPARATE_STRIP = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
 			};
 			name = Release;
 		};
